@@ -1,0 +1,119 @@
+% ***************************************************
+% ABC formula
+% in RPN code for HP-41C (CV/CX) family
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{ABC formula for the HP-41C family}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{The ABC formula HP-41C code}
+
+\tStarttabular
+\tONfo           {Put the calculator [ON]}
+\tPRGMfo         {Enter program mode}
+\tGTOendfo       {Set program counter @ end of code} 
+\\
+\tLBLafo         {ABC}      {Start position ABC formula}  
+\tSTOfo          {23}       {Store 'c' in register 23} 
+\tRdownfo                   {Get next value from stack} 
+\tCHSfo                     {Change sign} 
+\tSTOfo          {22}       {Store '-b' in register 22} 
+\tRdownfo                   {Get next value from stack} 
+\tNBRfo          {2}        {} 
+\tOPmultiplyfo              {Multiply 'a' by 2} 
+\tSTOfo          {21}       {and store '2a' in register 21} 
+\tXeqZEROfo                 {Check if 'a' is 0} 
+\tRTNfo                     {If YES then 'no' answer and return} 
+\tNBRfo          {2}        {} 
+\tOPmultiplyfo              {Calculate '4a'}
+\tRCLfo          {23}       {Get 'c'} 
+\tOPmultiplyfo              {Calculate '4ac'}
+\tCHSfo                     {'-4ac'} 
+\tRCLfo          {22}       {Get '-b'} 
+\tSqrXfo                    {Calculate $('-b')^2$ which is '$b^2$' } 
+\tOPplusfo                  {Calculate '$d = b^2 - 4ac$'} 
+
+\tNewPage 
+
+\tXsmlrZEROfo               {Check if 'd' is negative} 
+\tRTNfo                     {If YES then 'no' answer and return} 
+\tSqrtXfo                   {Calculate square root of 'd'} 
+\tSTOfo          {24}       {Store square root of 'd' in register 24} 
+\tRCLfo          {22}       {Get '-b'} 
+\tOPplusfo                  {Calculate -b + square root of 'd' } 
+\tRCLfo          {21}       {Get '2a'} 
+\tOPdividefo                {Calculate the first X for Y=0} 
+\tSTOfo          {25}       {Store result in register 25 } 
+\tRCLfo          {22}       {Get '-b'} 
+\tRCLfo          {24}       {Get square root of 'd'} 
+\tOPminusfo                 {Calculate -b - square root of 'd'} 
+\tRCLfo          {21}       {Get '2a'} 
+\tOPdividefo                {Calculate the second X for Y=0} 
+\tSTOfo          {26}       {Store result in register 26 } 
+\tRCLfo          {25}       {Get first result, X1 in 'X' and X2 in 'Y'} 
+\tBEEPfo                    {Beep. Only ready and 0K after beep signal} 
+\tRTNfo                     {Return}  
+\\
+\tGTOendfo                  {END RPN coding} 
+\tPRGMfo                    {Leave program mode}
+\tASNfo          {ABC} {TAN} {Assign "ABC" to TAN } 
+\tUSERfo                    {Set USER mode} 
+\end{tabular}
+
+\clearpage
+\bigskip
+\rm
+\section{How to use the ABC formula}
+
+\bigskip
+A quadratic equation with real or complex coefficients has two solutions, called roots. These two solutions may or may not be distinct, and they may or may not be real. With this program only real solutions are calculated. \\
+
+Having:
+$$ a x^2 + b x + c = 0 $$ 
+
+\bigskip
+
+The RPN coded ABC formula with Label "ABC" has been assigned to key TAN. The HP-41C calculator has been set in USER-mode. 
+Enter the values $a$, $b$ and $c$ and execute the function by pressing key TAN.
+
+\bigskip
+Example with  $a = 1$, $ b = -5$ and $c = 4$:
+
+\bigskip
+Keystrokes: \\
+\NBRfo { 1 } \\
+\ENTERfo \\
+\NBRfo { 5 } \\
+\CHSfo \\
+\ENTERfo \\
+\NBRfo { 4 } \\
+\TANfo \\
+
+\bigskip
+\it { Running... }
+\rm
+
+\bigskip
+Result:
+\NBRfo { 4.0000 }
+\XswapYfo
+\NBRfo { 1.0000 }
+
+\bigskip
+So the solution is: $x_1 = 1$ and $x_2 = 4$
+
+\bigskip
+
+\end{document}

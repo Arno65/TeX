@@ -1,0 +1,121 @@
+% ***************************************************
+% ABC formula
+% in RPN code for HP-11C family
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{ABC formula for the HP-11C (and HP-15C)}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{The ABC formula HP-11C code}
+
+\tStarttabular
+
+
+\tONel           {Put the calculator ON}
+\tPRGMel         {Enter program mode}
+\tCLRPRGMel      {Clear program space is needed}
+\\
+\tLBLAel         {Start position ABC formula}  
+\tSTOel {3}      {Save 'c'}
+\tRdownel        {}
+\tCHSel          {}
+\tSTOel {2}      {Save '-b'}
+\tRdownel        {}
+\tNBRel {2}      {}
+\tOPmultiplyel   {}
+\tSTOel {1}      {Save '2a'}
+\tNBRel {2}      {}
+\tOPmultiplyel   {'4a'}
+\tRCLel {3}      {}
+\tOPmultiplyel   {'4ac'}
+\tRCLel {2}      {}
+\tSqrXel         {'b*b'}
+\tOPminusel      {}
+\tCHSel          {'d = b*b - 4ac'}
+\tXsmlrZEROel    {If d $<$ 0 then NO solutions}
+\tGTOel {1}      {}
+
+\tNewPage
+
+\tSqrtXel        {Square root of 'd'}
+\tSTOel {0}      {Save square root of 'd'}
+\tRCLel {2}      {}
+\tOPplusel       {}
+\tRCLel {1}      {}
+\tOPdivideel     {+ ABC formula}
+\tSTOel {4}      {Save x1}
+\tRCLel {2}      {}
+\tRCLel {0}      {}
+\tOPminusel      {}
+\tRCLel {1}      {}
+\tOPdivideel     {- ABC formula}
+\tSTOel {5}      {Save x2}
+\tRCLel {4}      {Read x1}
+\tRTNel          {Return with x1 in X and x2 in Y}
+\\
+\tLBLel {1}      {The are no real value solutions}
+\tNBRel {0}      {}
+\tSTOel {4}      {Save 0 in x1}
+\tSTOel {5}      {Save 0 in x2}
+\tENTERel        {}
+\tRTNel          {Return with 0 in X and 0 in Y, no real value solutions}
+
+\end{tabular}
+
+
+\clearpage
+\bigskip
+\rm
+\section{How to use the ABC formula}
+
+\bigskip
+A quadratic equation with real or complex coefficients has two solutions, called roots. These two solutions may or may not be distinct, and they may or may not be real. With this program only real solutions are calculated. \\
+
+Having:
+$$ a x^2 + b x + c = 0 $$ 
+
+\bigskip
+
+The RPN coded ABC formula starts with Label "A". If Label "A" is the first step the program can be started with the R/S (Run/Stop) button. Enter the values $a$, $b$ and $c$ and execute the function by pressing the R/S key.
+
+\bigskip
+Example with  $a = 1$, $ b = -5$ and $c = 4$:
+
+\bigskip
+Keystrokes: \\
+\tt
+\indent \NBRelc { 1 } \\
+\indent \ENTERelc \\
+\indent \NBRelc { 5 } \\
+\indent \CHSelc \\
+\indent \ENTERelc \\
+\indent \NBRelc { 4 } \\
+\indent \RSelc \\
+\\
+\indent \it { running }
+\rm
+
+\bigskip
+Result:
+\NBRelc { 4.0000 }
+\XswapYelc
+\NBRelc { 1.0000 }
+
+\bigskip
+So the solution is: $x_1 = 1$ and $x_2 = 4$
+
+\bigskip
+
+\end{document}

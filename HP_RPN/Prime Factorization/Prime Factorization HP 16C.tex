@@ -1,0 +1,115 @@
+% ***************************************************
+% Prime Factors
+% in RPN code for HP-16C model
+%
+% (c) 2013 by Prof. Bernd Ulmann
+% rewritten for HP-16C by Arno Jacobs
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{Prof. Bernd Ulmann}
+\title{Prime Factorization for the HP-16C model}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+
+
+\section{Prime Factorization HP-16C code}
+
+\resetcounter
+\tStarttabular
+
+\tONsi           {Switch the calculator ON}
+\tPRGMsi         {Enter program mode}
+\tCLRPRGMsi      {Clear all program memory}
+\\
+\tLBLsi {A}             {Start}
+\tSFsi  {5}             {Set "user" flag, '5' works, '0' not}
+\tSTOsi {0}             {Save input}
+\tNBRsi {2}             {}
+\tSTOsi {1}             {Save first prime}
+\\
+\tLBLsi {1}             {}
+\tRCLsi {0}             {Read working number}
+\tRCLsi {1}             {Read prime}
+\tOPdividesi            {}
+\tENTERsi               {}
+\tFlagsi {4}            {}
+\tGTOsi {2}             {}
+\tRCLsi {1}             {Read prime}
+\tPSEsi                 {Pause and show register X (prime factor)}
+\tRdownsi               {(Get register Y)}
+\tRdownsi               {Get register Z}
+
+\tNewPage
+
+\tSTOsi {0}             {}
+\tGTOsi {1}             {Next...}
+\\
+\tLBLsi {2}             {}
+\tGSBsi {3}             {}
+\tFlagsi {5}            {}
+\tGSBsi {3}             {}
+\tCFsi {5}              {}
+\tRCLsi {0}             {Read working number}
+\tRCLsi {1}             {Read prime}
+\tENTERsi {}            {}
+\tOPmultiplysi          {}
+\tXsmlreqYsi            {}
+\tGTOsi {1}             {Next...}
+\tRCLsi {0}             {Read working number}
+\tRTNsi                 {Return}
+
+\\
+\tLBLsi {3}             {Increment...}
+\tNBRsi {1}             {}
+\tRCLsi {1}             {}
+\tOPplussi              {}
+\tSTOsi {1}             {}
+\tRTNsi                 {Return}
+
+
+
+\tPRGMfi         {Leave program mode}
+
+\end{tabular}
+
+\clearpage
+
+\bigskip
+\rm
+\section{How to use the Prime Factorization program}
+
+\bigskip
+Select decimal mode, enter number N and run with \RSsic. The program will show all the prime factors (in decimal) of N from a low prime (2) and then up.
+
+\bigskip
+\noindent
+Example:
+
+\tt
+\indent \NBRsic{10} d\\
+\indent \RSsic \\
+\rm
+
+\bigskip
+
+Output:\\
+\it running \rm \\
+\tt \NBRsic {2} d \indent \it (pause one second)\\
+\it running \rm \\
+\tt \NBRsic {5} d \\
+\rm
+
+\bigskip
+
+
+
+\end{document}

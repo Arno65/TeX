@@ -1,0 +1,118 @@
+% ***************************************************
+% ABC formula
+% in RPN code for HP-25 model
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{ABC formula for the HP-25 model}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{The ABC formula HP-25 code}
+
+\tStarttabular
+\tONtf           {Switch the calculator ON}
+\tPRGMtf         {Switch the HP-25 in program mode}
+\\
+\tSTOtf {3}      {Start. Save 'c'}
+\tRdowntf        {}
+\tCHStf          {}
+\tSTOtf {2}      {Save '-b'}
+\tRdowntf        {}
+\tNBRtf {2}      {}
+\tOPmultiplytf   {}
+\tSTOtf {1}      {Save '2a'}
+\tNBRtf {2}      {}
+\tOPmultiplytf   {'4a'}
+\tRCLtf {3}      {}
+\tOPmultiplytf   {'4ac'}
+\tRCLtf {2}      {}
+\tSqrXtf         {'b*b'}
+\tOPminustf      {}
+\tCHStf          {'d = b*b - 4ac'}
+\tXsmlrZEROtf    {If d $<$ 0 then NO solutions}
+\tGTOtf {34}      {}
+
+\tNewPage
+
+\tSqrtXtf        {Square root of 'd'}
+\tSTOtf {0}      {Save square root of 'd'}
+\tRCLtf {2}      {}
+\tOPplustf       {}
+\tRCLtf {1}      {}
+\tOPdividetf     {+ ABC formula}
+\tSTOtf {4}      {Save x1}
+\tRCLtf {2}      {}
+\tRCLtf {0}      {}
+\tOPminustf      {}
+\tRCLtf {1}      {}
+\tOPdividetf     {- ABC formula}
+\tSTOtf {5}      {Save x2}
+\tRCLtf {4}      {Read x1}
+\tGTOtf {00}     {Return with x1 in X and x2 in Y}
+\\
+\tNBRtf {0}      {The are no real value solutions}
+\tSTOtf {4}      {Save 0 in x1}
+\tSTOtf {5}      {Save 0 in x2}
+\tENTERtf        {}
+\tGTOtf {00}     {Return with 0 in X and 0 in Y, no real value solutions}
+
+\tRUNtf {}
+
+\end{tabular}
+
+
+\clearpage
+\bigskip
+\rm
+\section{How to use the function ABC formula}
+
+\bigskip
+A quadratic equation with real or complex coefficients has two solutions, called roots. These two solutions may or may not be distinct, and they may or may not be real. With this program only real solutions are calculated. \\
+
+Having:
+$$ a x^2 + b x + c = 0 $$ 
+
+\bigskip
+
+Enter the values $a$, $b$ and $c$ and execute the function by pressing the R/S key.
+
+\bigskip
+Example with  $a = 1$, $ b = -5$ and $c = 4$:
+
+\bigskip
+Keystrokes: \\
+\tt
+\indent \NBRtfc { 1 } \\
+\indent \ENTERtfc \\
+\indent \NBRtfc { 5 } \\
+\indent \CHStfc \\
+\indent \ENTERtfc \\
+\indent \NBRtfc { 4 } \\
+\indent \RStfc \\
+\\
+\indent \it { running }
+\rm
+
+\bigskip
+Result:
+\NBRtfc { 4.0000 }
+\XswapYtfc
+\NBRtfc { 1.0000 }
+
+\bigskip
+So the solution is: $x_1 = 1$ and $x_2 = 4$
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,109 @@
+% ***************************************************
+% Prime Factors
+% in RPN code for HP-12C model
+%
+% (c) 2013 by Prof. Bernd Ulmann
+% rewritten for HP-15C by Arno Jacobs
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{Prof. Bernd Ulmann}
+\title{Prime Factorization for the HP-12C model}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+
+
+\section{Prime Factorization HP-12C code}
+
+\tStarttabular
+
+\tONtw           {Switch the calculator ON}
+\tPRGMtw         {Enter program mode}
+\tCLRPRGMtw      {Clear all program memory}
+\\
+\tSTOtw {0}             {Save input}
+\tNBRtw {2}             {}
+\tSTOtw {1}             {Save first prime}
+\tSTOtw {2}             {Save first prime}
+\\
+\tRCLtw {0}             {Read working number}
+\tRCLtw {1}             {Read prime}
+\tOPdividetw            {}
+\tENTERtw               {}
+\tFRACtw                {}
+\tXeqZEROtw             {X$=$0?}
+\tGTOtw {29}            {}
+\tNBRtw {1}             {} 
+\tSTOPLUStw {1}         {}
+\tRCLtw {2}             {}
+\tXswapYtw              {}
+\tXsmlreqYtw            {}
+\tGTOtw {21}            {}
+
+\tNewPage
+
+\tNBRtw {1}             {} 
+\tSTOtw {2}             {}
+\tSTOPLUStw {1}         {}
+\\
+\tRCLtw {0}             {Read working number}
+\tRCLtw {1}             {Read prime}
+\tENTERtw               {}
+\tOPmultiplytw          {$x^2$}
+\tXsmlreqYtw            {}
+\tGTOtw {05}            {and loop}
+\tRCLtw {0}             {Read last and biggest prime}
+\tGTOtw {00}            {End program}
+\\
+\tRCLtw {1}             {Display prime factor}
+\tPSEtw                 {and pause one second}
+\tRdowntw               {}
+\tRdowntw               {Get register Z}
+\tSTOtw {0}             {}
+\tGTOtw {05}            {and loop}
+\\
+
+\tPRGMfi         {Leave program mode}
+
+\end{tabular}
+
+\clearpage
+
+\bigskip
+\rm
+\section{How to use the Prime Factorization program}
+
+\bigskip
+Enter number N and run with \RStwc. The program will show all the prime factors of N from a low prime (2) and then up.
+
+\bigskip
+\noindent
+Example:
+
+\tt
+\indent \NBRtwc{10} \\
+\indent \RStwc \\
+\rm
+
+\bigskip
+
+Output:\\
+\it running \rm \\
+\tt \NBRtwc {2.00} \indent \it (pause one second)\\
+\it running \rm \\
+\tt \NBRtwc {5.00} \\
+\rm
+
+\bigskip
+
+
+
+\end{document}

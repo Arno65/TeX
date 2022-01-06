@@ -6,7 +6,7 @@ I wanted to document some programs written for those little machines so I wrote 
 These can be found in the HP_RPN directory.
 
 That directory also contains some sample code. 
-The most recent one is a little program to solve Problem 1 from the Project Euler.
+The most recent one is a little program to solve Problem 1 from the \textit{Project Euler.}
 https://projecteuler.net/
 
 Share and enjoy!

@@ -1,0 +1,368 @@
+% ***************************************************
+% Definition RPN code for HP-15C 
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+
+
+% Main keys
+\def \ONfi {\noindent ON }
+\def \USERfi {\noindent \fshift USER }
+\def \PRGMfi {\noindent \gshift P/R }
+
+\def \tONfi      #1{\ONfi      & & & \rem {#1} \\ }
+\def \tUSERfi    #1{\USERfi    & & & \rem {#1} \\ }
+\def \tPRGMfi    #1{\PRGMfi    & & & \rem {#1} \\ }
+
+% Basic functions without newline and indent codes
+%
+
+% line 1 left
+\def \SqrtXfic {$\sqrt{x}$ }
+\def \ExpXfic  {$e^x$ }
+\def \TENpXfic {$10^x$ }
+\def \YpXfic   {$y^x$ }
+\def \OverXfic {$1/x$ }
+
+\def \KeyAfic {\fshift A }
+\def \KeyBfic {\fshift B }
+\def \KeyCfic {\fshift C }
+\def \KeyDfic {\fshift D }
+\def \KeyEfic {\fshift E }
+
+\def \SqrXfic      {\gshift $x^2$ }
+\def \LNfic        {\gshift LN }
+\def \LOGfic       {\gshift LOG }
+\def \PERCENTfic   {\gshift $\%$ }
+\def \DELTAPERCfic {\gshift $\Delta\%$ }
+
+% line 2 left
+\def \SSTfic {SST}
+\def \GTOfic #1{GTO #1}
+\def \SINfic {SIN}
+\def \COSfic {COS}
+\def \TANfic {TAN}
+
+\def \LBLfic  #1{\fshift LBL #1}
+\def \HYPfic    {\fshift HYP}
+\def \DIMfic    {\fshift DIM}
+\def \BiBfic    {\fshift (i)}
+\def \Ific      {\fshift I}
+
+\def \BSTfic    {\gshift BST}
+\def \ARCHYPfic {\gshift HYP$^{-1}$}
+\def \ARCSINfic {\gshift SIN$^{-1}$}
+\def \ARCCOSfic {\gshift COS$^{-1}$}
+\def \ARCTANfic {\gshift TAN$^{-1}$}
+
+
+% line 3 left
+\def \RSfic     {R/S}
+\def \GSBfic  #1{GSB #1 }
+
+\def \Rdownfic  {R$\downarrow$}
+\def \XswapYfic {$x \lessgtr y$}
+\def \BACKfic   {$\leftarrow$}
+
+\def \PSEfic       {\fshift PSE}
+\def \CLRSIGMAfic  {\fshift CLEAR $\Sigma$}
+\def \CLRPRGMfic   {\fshift CLEAR PRGM}
+\def \CLRREGfic    {\fshift CLEAR REG}
+\def \CLRPREFIXfic {\fshift CLEAR PREFIX}
+
+\def \PRfic  {\gshift P/R}
+\def \RTNfic {\gshift RTN}
+
+\def \Rupfic {\gshift R$\uparrow$}
+\def \RNDfic {\gshift RND}
+\def \CLXfic {\gshift CL$X$}
+
+
+% line 4 left
+\def \STOfic          #1{STO #1}
+\def \STOPLUSfic      #1{STO + #1}
+\def \STOMINUSfic     #1{STO - #1}
+\def \STOMULTIPLYfic  #1{STO $\times$ #1}
+\def \STODIVIDEfic    #1{STO $\div$ #1}
+\def \RCLfic          #1{RCL #1}
+
+\def \FRACfic   {\fshift FRAC}
+\def \USERfic   {\fshift USER}
+
+\def \INTfic    {\gshift INT}
+\def \MEMfic    {\gshift MEM}
+
+
+% column 6 middle
+\def \CHSfic      {CHS}
+\def \EEXfic    #1{EEX #1}
+\def \ENTERfic    {ENTER}
+
+\def \MATRIXfic #1{\fshift MATRIX #1 }
+\def \RESULTfic   {\fshift RESULT }
+\def \RANfic      {\fshift RAN\# }
+
+\def \ABSfic      {\gshift ABS}
+\def \PIfic       {\gshift $\pi$}
+\def \LSTXfic     {\gshift LST$X$}
+
+% line 1 right
+\def \NBRfic #1{ #1 }
+
+\def \FIXfic #1{\fshift FIX #1 }
+\def \SCIfic #1{\fshift SCI #1 }
+\def \ENGfic #1{\fshift ENG #1  }
+
+\def \DEGfic   {\gshift DEG }
+\def \RADfic   {\gshift RAD }
+\def \GRDfic   {\gshift GRD }
+
+% line 2 right
+\def \Xswapfic  #1{\fshift $x \lessgtr$ #1}
+
+\def \XswapAfic  {\fshift $x \lessgtr$ A}
+\def \XswapBfic  {\fshift $x \lessgtr$ B}
+\def \XswapCfic  {\fshift $x \lessgtr$ C}
+\def \XswapDfic  {\fshift $x \lessgtr$ D}
+\def \XswapEfic  {\fshift $x \lessgtr$ E}
+
+\def \DSEfic  #1{\fshift DSE {#1} }
+\def \ISGfic  #1{\fshift ISG {#1} }
+
+\def \SFfic   #1{\gshift SF {#1} }
+\def \CFfic   #1{\gshift CF {#1} }
+\def \Flagfic #1{\gshift F? {#1} }
+
+% line 3 right
+\def \toRfic     {\fshift $\rightarrow R$ }
+\def \toHMSfic   {\fshift $\rightarrow$H.MS }
+\def \toRADfic   {\fshift $\rightarrow$RAD }
+
+\def \toPfic     {\gshift $\rightarrow P$ }
+\def \toHfic     {\gshift $\rightarrow$H }
+\def \toDEGfic   {\gshift $\rightarrow$DEG }
+
+% line 4 right
+\def \SigmaPlusfic  {$\Sigma$+ }
+\def \Pointfic      {$.$ }
+
+\def \FACTfic       {\fshift $x!$ }
+\def \Yrfic         {\fshift $\hat{y},r$ }
+\def \LRfic         {\fshift $L.R.$ }
+
+\def \XOverfic      {\gshift $\bar{x}$ }
+\def \sfic          {\gshift $s$ }
+\def \SigmaMinusfic {\gshift $\Sigma$- }
+
+
+% last column
+\def \OPdividefic    { $\div$ }
+\def \OPmultiplyfic  { $\times$ }
+\def \OPminusfic     { - }
+\def \OPplusfic      { + }
+
+\def \SOLVEfic    #1{\fshift SOLVE #1 }
+\def \SOLVEAfic     {\fshift SOLVE A }
+\def \SOLVEBfic     {\fshift SOLVE B }
+\def \SOLVECfic     {\fshift SOLVE C }
+\def \SOLVEDfic     {\fshift SOLVE D }
+\def \SOLVEEfic     {\fshift SOLVE E }
+\def \INTEGRALfic #1{\fshift $\int_{y}^{x}$ #1 }
+\def \INTEGRALAfic  {\fshift $\int_{y}^{x}$ A }
+\def \INTEGRALBfic  {\fshift $\int_{y}^{x}$ B }
+\def \INTEGRALCfic  {\fshift $\int_{y}^{x}$ C }
+\def \INTEGRALDfic  {\fshift $\int_{y}^{x}$ D }
+\def \INTEGRALEfic  {\fshift $\int_{y}^{x}$ E }
+\def \RESwapIMfic   {\fshift Re$\lessgtr$Im }
+\def \Pyxfic        {\fshift P$y,x$}
+
+\def \XsmlreqYfic   {\gshift X$\leqslant$Y }
+\def \XeqZEROfic    {\gshift X$=$0 }
+\def \TESTfic     #1{\gshift TEST #1 }
+\def \Cyxfic        {\gshift C$y,x$ }
+
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+% line 1 left
+\def \tSqrtXfi  #1{\cpp \indent \SqrtXfic  & \lnbr{linenumber} & 11       & \rem {#1} \\}
+\def \tExpXfi   #1{\cpp \indent \ExpXfic   & \lnbr{linenumber} & 12       & \rem {#1} \\}
+\def \tTENpXfi  #1{\cpp \indent \TENpXfic  & \lnbr{linenumber} & 13       & \rem {#1} \\}
+\def \tYpXfi    #1{\cpp \indent \YpXfic    & \lnbr{linenumber} & 14       & \rem {#1} \\}
+\def \tOverXfi  #1{\cpp \indent \OverXfic  & \lnbr{linenumber} & 15       & \rem {#1} \\}
+
+\def \tKeyAfi   #1{\cpp \indent \KeyAfic   & \lnbr{linenumber} & 42 11    & \rem {#1} \\}
+\def \tKeyBfi   #1{\cpp \indent \KeyBfic   & \lnbr{linenumber} & 42 12    & \rem {#1} \\}
+\def \tKeyCfi   #1{\cpp \indent \KeyCfic   & \lnbr{linenumber} & 42 13    & \rem {#1} \\}
+\def \tKeyDfi   #1{\cpp \indent \KeyDfic   & \lnbr{linenumber} & 42 14    & \rem {#1} \\}
+\def \tKeyEfi   #1{\cpp \indent \KeyEfic   & \lnbr{linenumber} & 42 15    & \rem {#1} \\}
+
+\def \tSqrXfi      #1{\cpp \indent \SqrXfic      & \lnbr{linenumber} & 43 11    & \rem {#1} \\}
+\def \tLNfi        #1{\cpp \indent \LNfic        & \lnbr{linenumber} & 43 12    & \rem {#1} \\}
+\def \tLOGfi       #1{\cpp \indent \LOGfic       & \lnbr{linenumber} & 43 13    & \rem {#1} \\}
+\def \tPERCENTfi   #1{\cpp \indent \PERCENTfic   & \lnbr{linenumber} & 43 14    & \rem {#1} \\}
+\def \tDELTAPERCfi #1{\cpp \indent \DELTAPERCfic & \lnbr{linenumber} & 43 15    & \rem {#1} \\}
+
+% line 2 left
+\def \tSSTfi      #1{\cpp \indent \SSTfic      & \lnbr{linenumber} & 21       & \rem {#1} \\}
+
+\def \tGTOAfi     #1{\cpp \indent \GTOfic {A}  & \lnbr{linenumber} & 22 11    & \rem {#1} \\}
+\def \tGTOBfi     #1{\cpp \indent \GTOfic {B}  & \lnbr{linenumber} & 22 12    & \rem {#1} \\}
+\def \tGTOCfi     #1{\cpp \indent \GTOfic {C}  & \lnbr{linenumber} & 22 13    & \rem {#1} \\}
+\def \tGTODfi     #1{\cpp \indent \GTOfic {D}  & \lnbr{linenumber} & 22 14    & \rem {#1} \\}
+\def \tGTOEfi     #1{\cpp \indent \GTOfic {E}  & \lnbr{linenumber} & 22 15    & \rem {#1} \\}
+\def \tGTOfi   #1 #2{\cpp \indent \GTOfic {#1} & \lnbr{linenumber} & 22  #1   & \rem {#2} \\}
+
+\def \tSINfi      #1{\cpp \indent \SINfic      & \lnbr{linenumber} & 23       & \rem {#1} \\}
+\def \tCOSfi      #1{\cpp \indent \COSfic      & \lnbr{linenumber} & 24       & \rem {#1} \\}
+\def \tTANfi      #1{\cpp \indent \TANfic      & \lnbr{linenumber} & 25       & \rem {#1} \\}
+
+
+\def \tLBLAfi    #1{\cpp \LBLfic {A}  & \lnbr{linenumber} & 42,21,11  & \rem {#1} \\}
+\def \tLBLBfi    #1{\cpp \LBLfic {B}  & \lnbr{linenumber} & 42,21,12  & \rem {#1} \\}
+\def \tLBLCfi    #1{\cpp \LBLfic {C}  & \lnbr{linenumber} & 42,21,13  & \rem {#1} \\}
+\def \tLBLDfi    #1{\cpp \LBLfic {D}  & \lnbr{linenumber} & 42,21,14  & \rem {#1} \\}
+\def \tLBLEfi    #1{\cpp \LBLfic {E}  & \lnbr{linenumber} & 42,21,15  & \rem {#1} \\}
+\def \tLBLfi  #1 #2{\cpp \LBLfic {#1} & \lnbr{linenumber} & 42,21, #1 & \rem {#2} \\}
+
+\def \tHYPfi     #1{\cpp \indent \HYPfic      & \lnbr{linenumber} & 42 22     & \rem {#1} \\}
+\def \tDIMfi     #1{\noindent    \DIMfic      &                   &           & \rem {#1} \\}
+\def \tBiBfi     #1{\cpp \indent \BiBfic      & \lnbr{linenumber} & 42 24     & \rem {#1} \\}
+\def \tIfi       #1{\cpp \indent \Ific        & \lnbr{linenumber} & 42 25     & \rem {#1} \\}
+
+\def \tBSTfi     #1{\cpp \indent \BSTfic      & \lnbr{linenumber} & 43 21     & \rem {#1} \\}
+\def \tARCHYPfi  #1{\cpp \indent \ARCHYPfic   & \lnbr{linenumber} & 43 22     & \rem {#1} \\}
+\def \tARCSINfi  #1{\cpp \indent \ARCSINfic   & \lnbr{linenumber} & 43 23     & \rem {#1} \\}
+\def \tARCCOSfi  #1{\cpp \indent \ARCCOSfic   & \lnbr{linenumber} & 43 24     & \rem {#1} \\}
+\def \tARCTANfi  #1{\cpp \indent \ARCTANfic   & \lnbr{linenumber} & 43 25     & \rem {#1} \\}
+
+% line 3 left
+\def \tRSfi       #1{\cpp \indent \RSfic       & \lnbr{linenumber} & 31       & \rem {#1} \\}
+
+\def \tGSBAfi     #1{\cpp \indent \GSBfic {A}  & \lnbr{linenumber} & 32 11    & \rem {#1} \\}
+\def \tGSBBfi     #1{\cpp \indent \GSBfic {B}  & \lnbr{linenumber} & 32 12    & \rem {#1} \\}
+\def \tGSBCfi     #1{\cpp \indent \GSBfic {C}  & \lnbr{linenumber} & 32 13    & \rem {#1} \\}
+\def \tGSBDfi     #1{\cpp \indent \GSBfic {D}  & \lnbr{linenumber} & 32 14    & \rem {#1} \\}
+\def \tGSBEfi     #1{\cpp \indent \GSBfic {E}  & \lnbr{linenumber} & 32 15    & \rem {#1} \\}
+\def \tGSBfi   #1 #2{\cpp \indent \GSBfic {#1} & \lnbr{linenumber} & 32  #1   & \rem {#2} \\}
+
+\def \tRdownfi    #1{\cpp \indent \Rdownfic    & \lnbr{linenumber} & 33       & \rem {#1} \\}
+\def \tXswapYfi   #1{\cpp \indent \XswapYfic   & \lnbr{linenumber} & 34       & \rem {#1} \\}
+\def \tBACKfi     #1{\cpp \indent \BACKfic     & {}                & {}       & \rem {#1} \\}
+
+\def \tPSEfi        #1{\cpp \indent \PSEfic       & \lnbr{linenumber} & 42 31    & \rem {#1} \\}
+\def \tCLRSIGMAfi   #1{\cpp \indent \CLRSIGMAfic  & \lnbr{linenumber} & 42 32    & \rem {#1} \\}
+\def \tCLRPRGMfi    #1{\noindent    \CLRPRGMfic   & {}                & {}       & \rem {#1} \\}
+\def \tCLRREGfi     #1{\cpp \indent \CLRREGfic    & \lnbr{linenumber} & 42 34    & \rem {#1} \\}
+\def \tCLRPREFIXfi  #1{\cpp \indent \CLRPREFIXfic & \lnbr{linenumber} & 42 35    & \rem {#1} \\}
+
+\def \tPRfi     #1{\cpp \indent \PRfic      & {}                &            & \rem {#1} \\}  
+\def \tRTNfi    #1{\cpp \indent \RTNfic     & \lnbr{linenumber} & 43 32      & \rem {#1} \\}
+\def \tRupfi    #1{\cpp \indent \Rupfic     & \lnbr{linenumber} & 43 33      & \rem {#1} \\}
+\def \tRNDfi    #1{\cpp \indent \RNDfic     & \lnbr{linenumber} & 43 34      & \rem {#1} \\}
+\def \tCLXfi    #1{\cpp \indent \CLXfic     & \lnbr{linenumber} & 43 35      & \rem {#1} \\}
+
+% line 4 left
+\def \tSTOfi  #1 #2{\cpp \indent \STOfic {#1}    & \lnbr{linenumber} & 44  #1    & \rem {#2} \\}
+\def \tSTOPLUSfi     #1 #2{\cpp \indent \STOPLUSfic     {#1} & \lnbr{linenumber} & 44,40, #1    & \rem {#2} \\}
+\def \tSTOMINUSfi    #1 #2{\cpp \indent \STOMINUSfic    {#1} & \lnbr{linenumber} & 44,30, #1    & \rem {#2} \\}
+\def \tSTOMULTIPLYfi #1 #2{\cpp \indent \STOMULTIPLYfic {#1} & \lnbr{linenumber} & 44,20, #1    & \rem {#2} \\}
+\def \tSTODIVIDEfi   #1 #2{\cpp \indent \STODIVIDEfic   {#1} & \lnbr{linenumber} & 44,10, #1    & \rem {#2} \\}
+\def \tRCLfi  #1 #2{\cpp \indent \RCLfic {#1}    & \lnbr{linenumber} & 45  #1    & \rem {#2} \\}
+
+\def \tFRACfi #1{\cpp \indent \FRACfic     & \lnbr{linenumber} & 42 44      & \rem {#1} \\}
+\def \tUSERfi #1{\cpp \indent \USERfic     & \lnbr{linenumber} & 42 45      & \rem {#1} \\}
+
+\def \tINTfi  #1{\cpp \indent \INTfic      & \lnbr{linenumber} & 43 44      & \rem {#1} \\}
+\def \tMEMfi  #1{\cpp \indent \MEMfic      &                   &            & \rem {#1} \\}
+
+% column 6 middle
+\def \tCHSfi    #1{\cpp \indent \CHSfic      & \lnbr{linenumber} & 16      & \rem {#1} \\}
+\def \tEEXfi #1 #2{\cpp \indent \EEXfic {#1} & \lnbr{linenumber} & 26  #1  & \rem {#2} \\}
+\def \tENTERfi  #1{\cpp \indent \ENTERfic    & \lnbr{linenumber} & 36      & \rem {#1} \\}
+
+\def \tMATRIXfi #1 #2{\cpp \indent \MATRIXfic {#1} & \lnbr{linenumber} & 42,16, #1  & \rem {#2} \\}
+\def \tRESULTfi    #1{\noindent    \RESULTfic      & {}                & {}         & \rem {#1} \\}
+\def \tRANfi       #1{\cpp \indent \RANfic         & \lnbr{linenumber} & 42 36      & \rem {#1} \\}
+
+\def \tABSfi   #1{\cpp \indent \ABSfic     & \lnbr{linenumber} & 43 16     & \rem {#1} \\}
+\def \tPIfi    #1{\cpp \indent \PIfic      & \lnbr{linenumber} & 43 26     & \rem {#1} \\}
+\def \tLSTXfi  #1{\cpp \indent \LSTXfic    & \lnbr{linenumber} & 43 36     & \rem {#1} \\}
+
+% line 1 right
+\def \tNBRfi  #1 #2{\cpp \indent \NBRfic {#1}  & \lnbr{linenumber} & #1        & \rem {#2} \\}
+
+\def \tFIXfi   #1 #2{\cpp \indent \FIXfic {#1} & \lnbr{linenumber} & 42, 7, #1  & \rem {#2} \\}
+\def \tSCIfi   #1 #2{\cpp \indent \SCIfic {#1} & \lnbr{linenumber} & 42, 8, #1  & \rem {#2} \\}
+\def \tENGfi   #1 #2{\cpp \indent \ENGfic {#1} & \lnbr{linenumber} & 42, 9, #1  & \rem {#2} \\}
+
+\def \tDEGfi   #1{\cpp \indent \DEGfic    & \lnbr{linenumber} & 43  7     & \rem {#1} \\}
+\def \tRADfi   #1{\cpp \indent \RADfic    & \lnbr{linenumber} & 43  8     & \rem {#1} \\}
+\def \tGRDfi   #1{\cpp \indent \GRDfic    & \lnbr{linenumber} & 43  9     & \rem {#1} \\}
+
+% line 2 right
+\def \tXswapAfi  #1{\cpp \indent \XswapAfic    & \lnbr{linenumber} & 42, 4,11    & \rem {#1} \\}
+\def \tXswapBfi  #1{\cpp \indent \XswapBfic    & \lnbr{linenumber} & 42, 4,12    & \rem {#1} \\}
+\def \tXswapCfi  #1{\cpp \indent \XswapCfic    & \lnbr{linenumber} & 42, 4,13    & \rem {#1} \\}
+\def \tXswapDfi  #1{\cpp \indent \XswapDfic    & \lnbr{linenumber} & 42, 4,14    & \rem {#1} \\}
+\def \tXswapEfi  #1{\cpp \indent \XswapEfic    & \lnbr{linenumber} & 42, 4,15    & \rem {#1} \\}
+
+\def \tXswapfi  #1 #2{\cpp \indent \Xswapcfi     & \lnbr{linenumber} & 42, 4, #1    & \rem {#2} \\}
+\def \tDSEfi    #1 #2{\cpp \indent \DSEfic {#1}  & \lnbr{linenumber} & 42, 5, #1   & \rem {#2} \\}
+\def \tISGfi    #1 #2{\cpp \indent \ISGfic {#1}  & \lnbr{linenumber} & 42, 6, #1   & \rem {#2} \\}
+
+\def \tSFfi    #1 #2{\cpp \indent \SFfic {#1}   & \lnbr{linenumber} & 43, 4, #1   & \rem {#2} \\}
+\def \tCFfi    #1 #2{\cpp \indent \CFfic {#1}   & \lnbr{linenumber} & 43, 5, #1   & \rem {#2} \\}
+\def \tFlagfi  #1 #2{\cpp \indent \Flagfic {#1} & \lnbr{linenumber} & 43, 6, #1   & \rem {#2} \\}
+
+
+% line 3 right
+\def \ttoRfi      #1{\cpp \indent \ttoRfic      & \lnbr{linenumber} & 42  1     & \rem {#1} \\}
+\def \ttoHMSfi    #1{\cpp \indent \toHMSfic     & \lnbr{linenumber} & 42  2     & \rem {#1} \\}
+\def \ttoRADfi    #1{\cpp \indent \toRADfic     & \lnbr{linenumber} & 42  3     & \rem {#1} \\}
+
+\def \ttoPfi      #1{\cpp \indent \toPfic       & \lnbr{linenumber} & 43  1     & \rem {#1} \\}
+\def \ttoHfi      #1{\cpp \indent \toHfic       & \lnbr{linenumber} & 43  2     & \rem {#1} \\}
+\def \ttoDEGfi    #1{\cpp \indent \toDEGfic     & \lnbr{linenumber} & 43  3     & \rem {#1} \\}
+
+% line 4 right
+\def \tSigmaPlusfi   #1{\cpp \indent \SigmaPlusc    & \lnbr{linenumber} & 49        & \rem {#1} \\}
+\def \tPointfi       #1{\indent \Pointc             & {}                & {}        & \rem {#1} \\}
+
+\def \tFACTfi     #1{\cpp \indent \FACTc      & \lnbr{linenumber} & 42  0     & \rem {#1} \\}
+\def \tYrfi       #1{\cpp \indent \Yrc        & \lnbr{linenumber} & 42 48     & \rem {#1} \\}
+\def \tLRfi       #1{\cpp \indent \LRc        & \lnbr{linenumber} & 42 49     & \rem {#1} \\}
+
+\def \tXOverfi       #1{\cpp \indent \XOverc       & \lnbr{linenumber}  & 43  0     & \rem {#1} \\}
+\def \tsfi           #1{\cpp \indent \sc           & \lnbr{linenumber}  & 43 48     & \rem {#1} \\}
+\def \tSigmaMinusfi  #1{\cpp \indent \SigmaMinusc  & \lnbr{linenumber}  & 43 49     & \rem {#1} \\}
+
+% last column
+\def \tOPdividefi     #1{\cpp \indent \OPdividefic    & \lnbr{linenumber} & 10     & \rem {#1} \\}
+\def \tOPmultiplyfi   #1{\cpp \indent \OPmultiplyfic  & \lnbr{linenumber} & 20     & \rem {#1} \\}
+\def \tOPminusfi      #1{\cpp \indent \OPminusfic     & \lnbr{linenumber} & 30     & \rem {#1} \\}
+\def \tOPplusfi       #1{\cpp \indent \OPplusfic      & \lnbr{linenumber} & 40     & \rem {#1} \\}
+
+\def \tSOLVEfi  #1 #2{\cpp \indent \SOLVEfic {#1} & \lnbr{linenumber} & 42,10, #1  & \rem {#2} \\}
+\def \tSOLVEAfi    #1{\cpp \indent \SOLVEAfic     & \lnbr{linenumber} & 42,10,11   & \rem {#1} \\}
+\def \tSOLVEBfi    #1{\cpp \indent \SOLVEBfic     & \lnbr{linenumber} & 42,10,12   & \rem {#1} \\}
+\def \tSOLVECfi    #1{\cpp \indent \SOLVECfic     & \lnbr{linenumber} & 42,10,13   & \rem {#1} \\}
+\def \tSOLVEDfi    #1{\cpp \indent \SOLVEDfic     & \lnbr{linenumber} & 42,10,14   & \rem {#1} \\}
+\def \tSOLVEEfi    #1{\cpp \indent \SOLVEEfic     & \lnbr{linenumber} & 42,10,15   & \rem {#1} \\}
+\def \tINTEGRALfi #1 #2{\cpp \indent \INTEGRALfic {#1} & \lnbr{linenumber} & 42,20, #1  & \rem {#2} \\}
+\def \tINTEGRALAfi #1{\cpp \indent \INTEGRALAfic  & \lnbr{linenumber} & 42,20,11   & \rem {#1} \\}
+\def \tINTEGRALBfi #1{\cpp \indent \INTEGRALBfic  & \lnbr{linenumber} & 42,20,12   & \rem {#1} \\}
+\def \tINTEGRALCfi #1{\cpp \indent \INTEGRALCfic  & \lnbr{linenumber} & 42,20,13   & \rem {#1} \\}
+\def \tINTEGRALDfi #1{\cpp \indent \INTEGRALDfic  & \lnbr{linenumber} & 42,20,14   & \rem {#1} \\}
+\def \tINTEGRALEfi #1{\cpp \indent \INTEGRALEfic  & \lnbr{linenumber} & 42,20,15   & \rem {#1} \\}
+\def \tRESwapIMfi  #1{\cpp \indent \RESwapIMfic   & \lnbr{linenumber} & 42 30      & \rem {#1} \\}
+\def \tPyxfi       #1{\cpp \indent \Pyxfic        & \lnbr{linenumber} & 42 40      & \rem {#1} \\}
+
+\def \tXsmlreqYfi   #1{\cpp \indent \XsmlreqYfic    & \lnbr{linenumber} & 43 10      & \rem {#1} \\}
+\def \tXeqZEROfi    #1{\cpp \indent \XeqZEROfic     & \lnbr{linenumber} & 43 20      & \rem {#1} \\}
+\def \tTESTfi    #1 #2{\cpp \indent \TESTfic {#1}   & \lnbr{linenumber} & 43,30, #1  & \rem {#2} \\}
+\def \tCyxfi        #1{\cpp \indent \Cyxfic         & \lnbr{linenumber} & 43 40      & \rem {#1} \\}
+
+
+% End of definitions

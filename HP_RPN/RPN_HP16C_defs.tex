@@ -1,0 +1,297 @@
+% ***************************************************
+% Definition RPN code for HP-16C 
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+
+
+% Main keys
+\def \ONsi {\noindent ON }
+\def \PRGMsi {\noindent \gshift P/R }
+
+\def \tONsi      #1{\ONsi      & & & \rem {#1} \\ }
+\def \tPRGMsi    #1{\PRGMsi    & & & \rem {#1} \\ }
+
+% Basic functions without newline and indent codes
+%
+
+% line 1 left
+% FOR A..F:  \def \NBRsic #1{ #1 }  ->  \NBRsic {A}
+
+\def \SLsic   {\fshift SL  }
+\def \SRsic   {\fshift SR  }
+\def \RLsic   {\fshift RL  }
+\def \RRsic   {\fshift RR  }
+\def \RLnsic  {\fshift RLn }
+\def \RRnsic  {\fshift RRn }
+
+\def \LJsic   {\gshift LJ   }
+\def \ASRsic  {\gshift ASR  }
+\def \RLCsic  {\gshift RLC  }
+\def \RRCsic  {\gshift RRC  }
+\def \RLCnsic {\gshift RLCn }
+\def \RRCnsic {\gshift RRCn }
+
+% line 2 left
+\def \GSBsic #1{GSB #1}
+\def \GTOsic #1{GTO #1}
+\def \HEXsic   {HEX }
+\def \DECsic   {DEC }
+\def \OCTsic   {OCT }
+\def \BINsic   {BIN }
+
+\def \Xswapindexisic {\fshift $x \lessgtr (i)$}
+\def \XswapIsic      {\fshift $x \lessgtr I$}
+\def \SHOWHEXsic {\fshift SHOW HEX }
+\def \SHOWDECsic {\fshift SHOW DEC }
+\def \SHOWOCTsic {\fshift SHOW OCT }
+\def \SHOWBINsic {\fshift SHOW BIN }
+
+\def \RTNsic    {\gshift RTN }
+\def \LBLsic  #1{\gshift LBL #1}
+\def \DSZsic    {\gshift DSZ }
+\def \ISZsic    {\gshift ISZ }
+\def \SqrtXsic  {\gshift $\sqrt{x}$ }
+\def \OverXsic  {\gshift $1/x$ }
+
+
+% line 3 left
+\def \RSsic     {R/S}
+\def \SSTsic    {SST}
+\def \Rdownsic  {R$\downarrow$}
+\def \XswapYsic {$x \lessgtr y$}
+\def \BSPsic    {BSP}
+
+\def \BiBsic       {\fshift (i)}
+\def \Isic         {\fshift I}
+\def \CLRPRGMsic   {\fshift CLEAR PRGM}
+\def \CLRREGsic    {\fshift CLEAR REG}
+\def \CLRPREFIXsic {\fshift CLEAR PREFIX}
+
+\def \PRsic  {\gshift P/R}
+\def \BSTsic {\gshift BST}
+\def \Rupsic {\gshift R$\uparrow$}
+\def \PSEsic {\gshift PSE}
+\def \CLXsic {\gshift CL$X$}
+
+
+% line 4 left
+\def \STOsic  #1{STO #1}
+\def \RCLsic  #1{RCL #1}
+
+\def \WSIZEsic  {\fshift WSIZE }
+\def \FLOATsic  {\fshift FLOAT }
+
+\def \ALEFTsic  {\gshift $<$ }
+\def \ARIGHTsic {\gshift $>$ }
+
+
+% column 6 middle down
+\def \ENTERsic    {ENTER}
+\def \WINDOWsic   {\fshift WINDOW }
+\def \LSTXsic     {\gshift LST$X$}
+
+
+% line 1 right
+\def \NBRsic #1{ #1 }
+
+\def \MASKLsic   {\fshift MASKL }
+\def \MASKRsic   {\fshift MASKR }
+\def \RMDsic     {\fshift RMD  }
+\def \XORsic     {\fshift XOR  }
+
+\def \HASHBsic   {\gshift $\#$B }
+\def \ABSsic     {\gshift ABS }
+\def \DBLRsic    {\gshift DBLR  }
+\def \DBLdivsic  {\gshift DBL$\div$ }
+
+% line 2 right
+\def \SBsic      {\fshift SB }
+\def \CBsic      {\fshift CB }
+\def \Bitsic     {\fshift B?  }
+\def \ANDsic     {\fshift AND  }
+
+\def \SFsic   #1{\gshift SF {#1} }
+\def \CFsic   #1{\gshift CF {#1} }
+\def \Flagsic #1{\gshift F? {#1} }
+\def \DBLxsic   {\gshift DBL$\times$ }
+
+% line 3 right
+\def \SConeSsic   {\fshift Set Compl $1'S$ }
+\def \SCtwoSsic   {\fshift Set Compl $2'S$ }
+\def \SCUNSGNsic  {\fshift Set Compl UNSGN }
+\def \NOTsic      {\fshift NOT} 
+
+\def \XsmlreqYsic     {\gshift X$\leqslant$Y }
+\def \XsmlrZEROsic    {\gshift X$<$0 }
+\def \XgreaterYsic    {\gshift X$>$Y }
+\def \XgreaterZEROsic {\gshift X$>$0 }
+
+
+% line 4 right
+\def \Pointsic    {$.$ }
+\def \CHSsic      {CHS }
+
+\def \MEMsic      {\fshift MEM }
+\def \STATUSsic   {\fshift STATUS }
+\def \EEXsic      {\fshift EEX }
+\def \ORsic       {\fshift OR }
+
+\def \XnoteqYsic     {\gshift X$\notequal$Y }
+\def \XnoteqZEROsic  {\gshift X$\notequal$0 }
+\def \XeqYsic        {\gshift X$=$Y }
+\def \XeqZEROsic     {\gshift X$=$0 }
+
+
+% last column operators
+\def \OPdividesic    { $\div$ }
+\def \OPmultiplysic  { $\times$ }
+\def \OPminussic     { - }
+\def \OPplussic      { + }
+
+
+
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+% Numbers 0..9, a..F only
+\def \tNBRsi  #1 #2{\cpp \indent \NBRsic {#1}  & \lnbr{linenumber} & #1        & \rem {#2} \\}
+
+% line 1 left
+\def \tSLsi   #1{\cpp \indent \SLsic   & \lnbr{linenumber} & 42 11       & \rem {#1} \\}
+\def \tSRsi   #1{\cpp \indent \SRsic   & \lnbr{linenumber} & 42 12       & \rem {#1} \\}
+\def \tRLsi   #1{\cpp \indent \RLsic   & \lnbr{linenumber} & 42 13       & \rem {#1} \\}
+\def \tRRsi   #1{\cpp \indent \RRsic   & \lnbr{linenumber} & 42 14       & \rem {#1} \\}
+\def \tRLnsi  #1{\cpp \indent \RLnsic  & \lnbr{linenumber} & 42 15       & \rem {#1} \\}
+\def \tRRnsi  #1{\cpp \indent \RRnsic  & \lnbr{linenumber} & 42 16       & \rem {#1} \\}
+
+\def \tLJsi   #1{\cpp \indent \LJsic   & \lnbr{linenumber} & 43 11       & \rem {#1} \\}
+\def \tASRsi  #1{\cpp \indent \ASRsic  & \lnbr{linenumber} & 43 12       & \rem {#1} \\}
+\def \tRLCsi  #1{\cpp \indent \RLCsic  & \lnbr{linenumber} & 43 13       & \rem {#1} \\}
+\def \tRRCsi  #1{\cpp \indent \RRCsic  & \lnbr{linenumber} & 43 14       & \rem {#1} \\}
+\def \tRLCnsi #1{\cpp \indent \RLCnsic & \lnbr{linenumber} & 43 15       & \rem {#1} \\}
+\def \tRRCnsi #1{\cpp \indent \RRCnsic & \lnbr{linenumber} & 43 16       & \rem {#1} \\}
+
+
+% line 2 left
+\def \tGSBsi #1 #2{\cpp \indent \GSBsic {#1} & \lnbr{linenumber} & 21  #1   & \rem {#2} \\}
+\def \tGTOsi #1 #2{\cpp \indent \GTOsic {#1} & \lnbr{linenumber} & 22  #1   & \rem {#2} \\}
+\def \tHEXsi    #1{\cpp \indent \HEXsic      & \lnbr{linenumber} & 23       & \rem {#1} \\}
+\def \tDECsi    #1{\cpp \indent \DECsic      & \lnbr{linenumber} & 24       & \rem {#1} \\}
+\def \tOCTsi    #1{\cpp \indent \OCTsic      & \lnbr{linenumber} & 25       & \rem {#1} \\}
+\def \tBINsi    #1{\cpp \indent \BINsic      & \lnbr{linenumber} & 26       & \rem {#1} \\}
+
+\def \tXswapindexisi #1{\cpp \indent \Xswapindexisic  & \lnbr{linenumber} & 42 21       & \rem {#1} \\}
+\def \tXswapIsi      #1{\cpp \indent \XswapIsic       & \lnbr{linenumber} & 42 22       & \rem {#1} \\}
+\def \tSHOWHEXsi     #1{\cpp \indent \SHOWHEXsic      & \lnbr{linenumber} & 42 23       & \rem {#1} \\}
+\def \tSHOWDECsi     #1{\cpp \indent \SHOWDECsic      & \lnbr{linenumber} & 42 24       & \rem {#1} \\}
+\def \tSHOWOCTsi     #1{\cpp \indent \SHOWOCTsic      & \lnbr{linenumber} & 42 25       & \rem {#1} \\}
+\def \tSHOWBINsi     #1{\cpp \indent \SHOWBINsic      & \lnbr{linenumber} & 42 26       & \rem {#1} \\}
+
+\def \tRTNsi     #1{\cpp \indent \RTNsic      & \lnbr{linenumber} & 43 21       & \rem {#1} \\}
+\def \tLBLsi  #1 #2{\cpp \indent \LBLsic {#1} & \lnbr{linenumber} & 43,22, #1   & \rem {#2} \\}
+\def \tDSZsi     #1{\cpp \indent \DSZsic      & \lnbr{linenumber} & 43 23       & \rem {#1} \\}
+\def \tISZsi     #1{\cpp \indent \ISZsic      & \lnbr{linenumber} & 43 24       & \rem {#1} \\}
+\def \tSqrtXsi   #1{\cpp \indent \SqrtXsic    & \lnbr{linenumber} & 43 25       & \rem {#1} \\}
+\def \tOverXsi   #1{\cpp \indent \OverXsic    & \lnbr{linenumber} & 43 26       & \rem {#1} \\}
+
+
+% line 3 left
+\def \tRSsi       #1{\cpp \indent  \RSsic       & \lnbr{linenumber} & 31       & \rem {#1} \\}
+\def \tSSTsi      #1{\noindent     \SSTsic      & {}                & {}       & \rem {#1} \\}
+\def \tRdownsi    #1{\cpp \indent  \Rdownsic    & \lnbr{linenumber} & 33       & \rem {#1} \\}
+\def \tXswapYsi   #1{\cpp \indent  \XswapYsic   & \lnbr{linenumber} & 34       & \rem {#1} \\}
+\def \tBSPsi      #1{\cpp \indent  \BSPsic      & {}                & {}       & \rem {#1} \\}
+
+\def \tBiBsi        #1{\cpp \indent \BiBsic       & \lnbr{linenumber} & 42 31    & \rem {#1} \\}
+\def \tIsi          #1{\cpp \indent \Isic         & \lnbr{linenumber} & 42 32    & \rem {#1} \\}
+\def \tCLRPRGMsi    #1{\noindent    \CLRPRGMsic   & {}                & {}       & \rem {#1} \\}
+\def \tCLRREGsi     #1{\cpp \indent \CLRREGsic    & \lnbr{linenumber} & 42 34    & \rem {#1} \\}
+\def \tCLRPREFIXsi  #1{\cpp \indent \CLRPREFIXsic & \lnbr{linenumber} & 42 35    & \rem {#1} \\}
+
+\def \tPRsi         #1{\cpp \indent \PRsic        & {}                & {}       & \rem {#1} \\}  
+\def \tBSTsi        #1{\cpp \indent \BSTsic       & \lnbr{linenumber} & 43 32    & \rem {#1} \\}
+\def \tRupsi        #1{\cpp \indent \Rupsic       & \lnbr{linenumber} & 43 33    & \rem {#1} \\}
+\def \tPSEsi        #1{\cpp \indent \PSEsic       & \lnbr{linenumber} & 43 34    & \rem {#1} \\}
+\def \tCLXsi        #1{\cpp \indent \CLXsic       & \lnbr{linenumber} & 43 35    & \rem {#1} \\}
+
+
+% line 4 left
+\def \tSTOsi  #1 #2{\cpp \indent \STOsic {#1}    & \lnbr{linenumber} & 44  #1    & \rem {#2} \\}
+\def \tRCLsi  #1 #2{\cpp \indent \RCLsic {#1}    & \lnbr{linenumber} & 45  #1    & \rem {#2} \\}
+
+\def \tWSIZEsi      #1{\cpp \indent \WSIZEsic    & \lnbr{linenumber} & 42 44     & \rem {#1} \\}
+\def \tFLOATsi      #1{\cpp \indent \FLOATsic    & \lnbr{linenumber} & 42 45     & \rem {#1} \\}
+
+\def \tALEFTsi      #1{\cpp \indent \ALEFTsic    & \lnbr{linenumber} & 43 44     & \rem {#1} \\}
+\def \tARIGHTsi     #1{\cpp \indent \ARIGHTsic   & \lnbr{linenumber} & 43 45     & \rem {#1} \\}
+
+
+% column 6 middle down
+\def \tENTERsi     #1{\cpp \indent \ENTERsic     & \lnbr{linenumber} & 36         & \rem {#1} \\}
+\def \tWINDOWsi    #1{\cpp \indent \WINDOWsic    & \lnbr{linenumber} & 42 36      & \rem {#1} \\}
+\def \tLSTXsi      #1{\cpp \indent \LSTXsic      & \lnbr{linenumber} & 43 36      & \rem {#1} \\}
+
+
+% line 1 right
+\def \tMASKLsi   #1{\cpp \indent \MASKLsic      & \lnbr{linenumber} & 42  7     & \rem {#1} \\}
+\def \tMASKRsi   #1{\cpp \indent \MASKRsic      & \lnbr{linenumber} & 42  8     & \rem {#1} \\}
+\def \tRMDsi     #1{\cpp \indent \RMDsic        & \lnbr{linenumber} & 42  9     & \rem {#1} \\}
+\def \tXORsi     #1{\cpp \indent \XORsic        & \lnbr{linenumber} & 42 10     & \rem {#1} \\}
+
+\def \tHASHBsi   #1{\cpp \indent \HASHBsic      & \lnbr{linenumber} & 43  7     & \rem {#1} \\}
+\def \tABSsi     #1{\cpp \indent \ABSsic        & \lnbr{linenumber} & 43  8     & \rem {#1} \\}
+\def \tDBLRsi    #1{\cpp \indent \DBLRsic       & \lnbr{linenumber} & 43  9     & \rem {#1} \\}
+\def \tDBLdivsi  #1{\cpp \indent \DBLdivsic     & \lnbr{linenumber} & 43 10     & \rem {#1} \\}
+
+
+% line 2 right
+\def \tSBsi   #1{\cpp \indent \SBsic      & \lnbr{linenumber} & 42  4     & \rem {#1} \\}
+\def \tCBsi   #1{\cpp \indent \CBsic      & \lnbr{linenumber} & 42  5     & \rem {#1} \\}
+\def \tBitsi  #1{\cpp \indent \Bitsic     & \lnbr{linenumber} & 42  6     & \rem {#1} \\}
+\def \tANDsi  #1{\cpp \indent \ANDsic     & \lnbr{linenumber} & 42 20     & \rem {#1} \\}
+
+\def \tSFsi    #1 #2{\cpp \indent \SFsic {#1}   & \lnbr{linenumber} & 43, 4, #1   & \rem {#2} \\}
+\def \tCFsi    #1 #2{\cpp \indent \CFsic {#1}   & \lnbr{linenumber} & 43, 5, #1   & \rem {#2} \\}
+\def \tFlagsi  #1 #2{\cpp \indent \Flagsic {#1} & \lnbr{linenumber} & 43, 6, #1   & \rem {#2} \\}
+\def \tDBLxsi     #1{\cpp \indent \DBLxsic      & \lnbr{linenumber} & 43 20       & \rem {#1} \\}
+
+
+% line 3 right
+\def \tSConeSsi   #1{\cpp \indent \SConeSsic      & \lnbr{linenumber} & 42  1     & \rem {#1} \\}
+\def \tSCtwoSsi   #1{\cpp \indent \SCtwoSsic      & \lnbr{linenumber} & 42  2     & \rem {#1} \\}
+\def \tSCUNSGNsi  #1{\cpp \indent \SCUNSGNsic     & \lnbr{linenumber} & 42  3     & \rem {#1} \\}
+\def \tNOTsi      #1{\cpp \indent \NOTsic         & \lnbr{linenumber} & 42 30     & \rem {#1} \\} 
+
+\def \tXsmlreqYsi     #1{\cpp \indent \XsmlreqYsic     & \lnbr{linenumber} & 43  1     & \rem {#1} \\}
+\def \tXsmlrZEROsi    #1{\cpp \indent \XsmlrZEROsic    & \lnbr{linenumber} & 43  2     & \rem {#1} \\}
+\def \tXgreaterYsi    #1{\cpp \indent \XgreaterYsic    & \lnbr{linenumber} & 43  3     & \rem {#1} \\}
+\def \tXgreaterZEROsi #1{\cpp \indent \XgreaterZEROsic & \lnbr{linenumber} & 43 30     & \rem {#1} \\}
+
+% line 4 right
+\def \tPointsi        #1{\indent \Pointsic             & {}                & {}        & \rem {#1} \\}
+\def \tCHSsi          #1{\cpp \indent \CHSsic          & \lnbr{linenumber} & 49        & \rem {#1} \\}
+
+
+\def \tMEMsi      #1{\indent \MEMsic            & {}                & {}        & \rem {#1} \\}
+\def \tSTATUSsi   #1{\indent \STATUSsic         & {}                & {}        & \rem {#1} \\}
+\def \tEEXsi      #1{\cpp \indent \EEXsic       & \lnbr{linenumber} & 42 49     & \rem {#1} \\}
+\def \tORsi       #1{\cpp \indent \ORsic        & \lnbr{linenumber} & 42 40     & \rem {#1} \\}
+
+\def \tXnoteqYsi     #1{\cpp \indent \XnoteqYsic      & \lnbr{linenumber} & 43  0     & \rem {#1} \\}
+\def \tXnoteqZEROsi  #1{\cpp \indent \XnoteqZEROsic   & \lnbr{linenumber} & 43 48     & \rem {#1} \\}
+\def \tXeqYsi        #1{\cpp \indent \XeqYsic         & \lnbr{linenumber} & 43 49     & \rem {#1} \\}
+\def \tXeqZEROsi     #1{\cpp \indent \XeqZEROsic      & \lnbr{linenumber} & 43 40     & \rem {#1} \\}
+
+
+
+% last column - operators
+\def \tOPdividesi     #1{\cpp \indent \OPdividesic    & \lnbr{linenumber} & 10     & \rem {#1} \\}
+\def \tOPmultiplysi   #1{\cpp \indent \OPmultiplysic  & \lnbr{linenumber} & 20     & \rem {#1} \\}
+\def \tOPminussi      #1{\cpp \indent \OPminussic     & \lnbr{linenumber} & 30     & \rem {#1} \\}
+\def \tOPplussi       #1{\cpp \indent \OPplussic      & \lnbr{linenumber} & 40     & \rem {#1} \\}
+
+
+
+% End of definitions

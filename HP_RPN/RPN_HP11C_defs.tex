@@ -1,0 +1,335 @@
+% ***************************************************
+% Definition RPN code for HP-11C 
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+
+
+% Main keys
+\def \ONel {\noindent ON }
+\def \USERel {\noindent \fshift USER }
+\def \PRGMel {\noindent \gshift P/R }
+
+\def \tONel      #1{\ONel      & & & \rem {#1} \\ }
+\def \tUSERel    #1{\USERel    & & & \rem {#1} \\ }
+\def \tPRGMel    #1{\PRGMel    & & & \rem {#1} \\ }
+
+% Basic functions without newline and indent codes
+%
+
+% line 1 left
+\def \SqrtXelc {$\sqrt{x}$ }
+\def \ExpXelc  {$e^x$ }
+\def \TENpXelc {$10^x$ }
+\def \YpXelc   {$y^x$ }
+\def \OverXelc {$1/x$ }
+
+\def \KeyAelc {\fshift A }
+\def \KeyBelc {\fshift B }
+\def \KeyCelc {\fshift C }
+\def \KeyDelc {\fshift D }
+\def \KeyEelc {\fshift E }
+
+\def \SqrXelc      {\gshift $x^2$ }
+\def \LNelc        {\gshift LN }
+\def \LOGelc       {\gshift LOG }
+\def \PERCENTelc   {\gshift $\%$ }
+\def \DELTAPERCelc {\gshift $\Delta\%$ }
+
+% line 2 left
+\def \SSTelc {SST}
+\def \GTOelc #1{GTO #1}
+\def \SINelc {SIN}
+\def \COSelc {COS}
+\def \TANelc {TAN}
+
+\def \LBLelc  #1{\fshift LBL #1}
+\def \HYPelc    {\fshift HYP}
+\def \Xswapielc {\fshift $x \lessgtr  (i)$}
+\def \BiBelc    {\fshift (i)}
+\def \Ielc      {\fshift I}
+
+\def \BSTelc    {\gshift BST}
+\def \ARCHYPelc {\gshift HYP$^{-1}$}
+\def \ARCSINelc {\gshift SIN$^{-1}$}
+\def \ARCCOSelc {\gshift COS$^{-1}$}
+\def \ARCTANelc {\gshift TAN$^{-1}$}
+
+
+% line 3 left
+\def \RSelc     {R/S}
+\def \GSBelc  #1{GSB #1 }
+\def \Rdownelc  {R$\downarrow$}
+\def \XswapYelc {$x \lessgtr y$}
+\def \BACKelc   {$\leftarrow$}
+
+\def \PSEelc       {\fshift PSE}
+\def \CLRSIGMAelc  {\fshift CLEAR $\Sigma$}
+\def \CLRPRGMelc   {\fshift CLEAR PRGM}
+\def \CLRREGelc    {\fshift CLEAR REG}
+\def \CLRPREFIXelc {\fshift CLEAR PREFIX}
+
+\def \PRelc  {\gshift P/R}
+\def \RTNelc {\gshift RTN}
+\def \Rupelc {\gshift R$\uparrow$}
+\def \RNDelc {\gshift RND}
+\def \CLXelc {\gshift CL$X$}
+
+
+% line 4 left
+\def \STOelc          #1{STO #1}
+\def \STOPLUSelc      #1{STO + #1}
+\def \STOMINUSelc     #1{STO - #1}
+\def \STOMULTIPLYelc  #1{STO $\times$ #1}
+\def \STODIVIDEelc    #1{STO $\div$ #1}
+\def \RCLelc          #1{RCL #1}
+
+\def \FRACelc   {\fshift FRAC}
+\def \USERelc   {\fshift USER}
+
+\def \INTelc    {\gshift INT}
+\def \MEMelc    {\gshift MEM}
+
+
+% column 6 middle
+\def \CHSelc   {CHS}
+\def \EEXelc #1{EEX #1}
+\def \ENTERelc {ENTER}
+
+\def \PIelc    {\fshift $\pi$ }
+\def \toRelc   {\fshift $\rightarrow R$ }
+\def \RANelc   {\fshift RAN\# }
+
+\def \ABSelc   {\gshift ABS }
+\def \toPelc   {\gshift $\rightarrow P$ }
+\def \LSTXelc  {\gshift LST$X$ }
+
+
+% line 1 right
+\def \NBRelc #1{ #1 }
+
+\def \FIXelc #1{\fshift FIX #1 }
+\def \SCIelc #1{\fshift SCI #1 }
+\def \ENGelc #1{\fshift ENG #1  }
+
+\def \DEGelc   {\gshift DEG }
+\def \RADelc   {\gshift RAD }
+\def \GRDelc   {\gshift GRD }
+
+% line 2 right
+\def \XswapIelc {\fshift $x \lessgtr I$}
+\def \DSEelc    {\fshift DSE }
+\def \ISGelc    {\fshift ISG }
+
+\def \SFelc   #1{\gshift SF {#1} }
+\def \CFelc   #1{\gshift CF {#1} }
+\def \Flagelc #1{\gshift F? {#1} }
+
+% line 3 right
+\def \Pyxelc     {\fshift P$y,x$}
+\def \toHMSelc   {\fshift $\rightarrow$H.MS }
+\def \toRADelc   {\fshift $\rightarrow$RAD }
+
+\def \Cyxelc     {\gshift C$y,x$ }
+\def \toHelc     {\gshift $\rightarrow$H }
+\def \toDEGelc   {\gshift $\rightarrow$DEG }
+
+% line 4 right
+\def \FACTelc     {\fshift $x!$ }
+\def \Yrelc       {\fshift $\hat{y},r$ }
+\def \LRelc       {\fshift $L.R.$ }
+
+\def \XOverelc      {\gshift $\bar{x}$ }
+\def \selc          {\gshift $s$ }
+\def \SigmaMinuselc {\gshift $\Sigma$- }
+
+\def \SigmaPluselc  {$\Sigma$+ }
+\def \Pointelc      {$.$ }
+
+% last column
+\def \OPdivideelc    { $\div$ }
+\def \OPmultiplyelc  { $\times$ }
+\def \OPminuselc     { - }
+\def \OPpluselc      { + }
+
+\def \XsmlreqYelc     {\fshift X$\leqslant$Y }
+\def \XbigrYelc       {\fshift X$>$Y }
+\def \XnoteqYelc      {\fshift X$\neq$Y }
+\def \XeqYelc         {\fshift X$=$Y  }
+
+\def \XsmlrZEROelc    {\gshift X$<$0 }
+\def \XbigrZEROelc    {\gshift X$>$0 }
+\def \XnoteqZEROelc   {\gshift X$\neq$0 }
+\def \XeqZEROelc      {\gshift X$=$0 }
+
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+% line 1 left
+\def \tSqrtXel  #1{\cpp \indent \SqrtXelc  & \lnbr{linenumber} & 11       & \rem {#1} \\}
+\def \tExpXel   #1{\cpp \indent \ExpXelc   & \lnbr{linenumber} & 12       & \rem {#1} \\}
+\def \tTENpXel  #1{\cpp \indent \TENpXelc  & \lnbr{linenumber} & 13       & \rem {#1} \\}
+\def \tYpXel    #1{\cpp \indent \YpXelc    & \lnbr{linenumber} & 14       & \rem {#1} \\}
+\def \tOverXel  #1{\cpp \indent \OverXelc  & \lnbr{linenumber} & 15       & \rem {#1} \\}
+
+\def \tKeyAel   #1{\cpp \indent \KeyAelc   & \lnbr{linenumber} & 42 11    & \rem {#1} \\}
+\def \tKeyBel   #1{\cpp \indent \KeyBelc   & \lnbr{linenumber} & 42 12    & \rem {#1} \\}
+\def \tKeyCel   #1{\cpp \indent \KeyCelc   & \lnbr{linenumber} & 42 13    & \rem {#1} \\}
+\def \tKeyDel   #1{\cpp \indent \KeyDelc   & \lnbr{linenumber} & 42 14    & \rem {#1} \\}
+\def \tKeyEel   #1{\cpp \indent \KeyEelc   & \lnbr{linenumber} & 42 15    & \rem {#1} \\}
+
+\def \tSqrXel      #1{\cpp \indent \SqrXelc      & \lnbr{linenumber} & 43 11    & \rem {#1} \\}
+\def \tLNel        #1{\cpp \indent \LNelc        & \lnbr{linenumber} & 43 12    & \rem {#1} \\}
+\def \tLOGel       #1{\cpp \indent \LOGelc       & \lnbr{linenumber} & 43 13    & \rem {#1} \\}
+\def \tPERCENTel   #1{\cpp \indent \PERCENTelc   & \lnbr{linenumber} & 43 14    & \rem {#1} \\}
+\def \tDELTAPERCel #1{\cpp \indent \DELTAPERCelc & \lnbr{linenumber} & 43 15    & \rem {#1} \\}
+
+% line 2 left
+\def \tSSTel      #1{\cpp \indent \SSTelc      & \lnbr{linenumber} & 21       & \rem {#1} \\}
+
+\def \tGTOAel     #1{\cpp \indent \GTOelc {A}  & \lnbr{linenumber} & 22 11    & \rem {#1} \\}
+\def \tGTOBel     #1{\cpp \indent \GTOelc {B}  & \lnbr{linenumber} & 22 12    & \rem {#1} \\}
+\def \tGTOCel     #1{\cpp \indent \GTOelc {C}  & \lnbr{linenumber} & 22 13    & \rem {#1} \\}
+\def \tGTODel     #1{\cpp \indent \GTOelc {D}  & \lnbr{linenumber} & 22 14    & \rem {#1} \\}
+\def \tGTOEel     #1{\cpp \indent \GTOelc {E}  & \lnbr{linenumber} & 22 15    & \rem {#1} \\}
+\def \tGTOel   #1 #2{\cpp \indent \GTOelc {#1} & \lnbr{linenumber} & 22  #1   & \rem {#2} \\}
+
+\def \tSINel      #1{\cpp \indent \SINelc      & \lnbr{linenumber} & 23       & \rem {#1} \\}
+\def \tCOSel      #1{\cpp \indent \COSelc      & \lnbr{linenumber} & 24       & \rem {#1} \\}
+\def \tTANel      #1{\cpp \indent \TANelc      & \lnbr{linenumber} & 25       & \rem {#1} \\}
+
+
+\def \tLBLAel    #1{\cpp \LBLelc {A}  & \lnbr{linenumber} & 42,21,11  & \rem {#1} \\}
+\def \tLBLBel    #1{\cpp \LBLelc {B}  & \lnbr{linenumber} & 42,21,12  & \rem {#1} \\}
+\def \tLBLCel    #1{\cpp \LBLelc {C}  & \lnbr{linenumber} & 42,21,13  & \rem {#1} \\}
+\def \tLBLDel    #1{\cpp \LBLelc {D}  & \lnbr{linenumber} & 42,21,14  & \rem {#1} \\}
+\def \tLBLEel    #1{\cpp \LBLelc {E}  & \lnbr{linenumber} & 42,21,15  & \rem {#1} \\}
+\def \tLBLel  #1 #2{\cpp \LBLelc {#1} & \lnbr{linenumber} & 42,21, #1 & \rem {#2} \\}
+
+\def \tHYPel     #1{\cpp \indent \HYPelc      & \lnbr{linenumber} & 42 22     & \rem {#1} \\}
+\def \tXswapiel  #1{\cpp \indent \Xswapielc   & \lnbr{linenumber} & 42 23     & \rem {#1} \\}
+\def \tBiBel     #1{\cpp \indent \BiBelc      & \lnbr{linenumber} & 42 24     & \rem {#1} \\}
+\def \tIel       #1{\cpp \indent \Ielc        & \lnbr{linenumber} & 42 25     & \rem {#1} \\}
+
+\def \tBSTel     #1{\cpp \indent \BSTelc      & \lnbr{linenumber} & 43 21     & \rem {#1} \\}
+\def \tARCHYPel  #1{\cpp \indent \ARCHYPelc   & \lnbr{linenumber} & 43 22     & \rem {#1} \\}
+\def \tARCSINel  #1{\cpp \indent \ARCSINelc   & \lnbr{linenumber} & 43 23     & \rem {#1} \\}
+\def \tARCCOSel  #1{\cpp \indent \ARCCOSelc   & \lnbr{linenumber} & 43 24     & \rem {#1} \\}
+\def \tARCTANel  #1{\cpp \indent \ARCTANelc   & \lnbr{linenumber} & 43 25     & \rem {#1} \\}
+
+% line 3 left
+\def \tRSel       #1{\cpp \indent \RSelc       & \lnbr{linenumber} & 31       & \rem {#1} \\}
+
+\def \tGSBAel     #1{\cpp \indent \GSBelc {A}  & \lnbr{linenumber} & 32 11    & \rem {#1} \\}
+\def \tGSBBel     #1{\cpp \indent \GSBelc {B}  & \lnbr{linenumber} & 32 12    & \rem {#1} \\}
+\def \tGSBCel     #1{\cpp \indent \GSBelc {C}  & \lnbr{linenumber} & 32 13    & \rem {#1} \\}
+\def \tGSBDel     #1{\cpp \indent \GSBelc {D}  & \lnbr{linenumber} & 32 14    & \rem {#1} \\}
+\def \tGSBEel     #1{\cpp \indent \GSBelc {E}  & \lnbr{linenumber} & 32 15    & \rem {#1} \\}
+\def \tGSBel   #1 #2{\cpp \indent \GBSelc {#1} & \lnbr{linenumber} & 32  #1   & \rem {#2} \\}
+
+\def \tRdownel    #1{\cpp \indent \Rdownelc    & \lnbr{linenumber} & 33       & \rem {#1} \\}
+\def \tXswapYel   #1{\cpp \indent \XswapYelc   & \lnbr{linenumber} & 34       & \rem {#1} \\}
+\def \tBACKel     #1{\cpp \indent \BACKelc     & {}                & {}       & \rem {#1} \\}
+
+\def \tPSEel        #1{\cpp \indent \PSEelc       & \lnbr{linenumber} & 42 31    & \rem {#1} \\}
+\def \tCLRSIGMAel   #1{\cpp \indent \CLRSIGMAelc  & \lnbr{linenumber} & 42 32    & \rem {#1} \\}
+\def \tCLRPRGMel    #1{             \CLRPRGMelc   & {}                & {}       & \rem {#1} \\}
+\def \tCLRREGel     #1{\cpp \indent \CLRREGelc    & \lnbr{linenumber} & 42 34    & \rem {#1} \\}
+\def \tCLRPREFIXel  #1{\cpp \indent \CLRPREFIXelc & \lnbr{linenumber} & 42 35    & \rem {#1} \\}
+
+\def \tPRel     #1{\cpp \indent \PRelc      & {}                &            & \rem {#1} \\}  
+\def \tRTNel    #1{\cpp \indent \RTNelc     & \lnbr{linenumber} & 43 32      & \rem {#1} \\}
+\def \tRupel    #1{\cpp \indent \Rupelc     & \lnbr{linenumber} & 43 33      & \rem {#1} \\}
+\def \tRNDel    #1{\cpp \indent \RNDelc     & \lnbr{linenumber} & 43 34      & \rem {#1} \\}
+\def \tCLXel    #1{\cpp \indent \CLXelc     & \lnbr{linenumber} & 43 35      & \rem {#1} \\}
+
+% line 4 left
+\def \tSTOel  #1 #2{\cpp \indent \STOelc {#1}    & \lnbr{linenumber} & 44  #1    & \rem {#2} \\}
+\def \tSTOPLUSel     #1 #2{\cpp \indent \STOPLUSelc     {#1} & \lnbr{linenumber} & 44,40, #1    & \rem {#2} \\}
+\def \tSTOMINUSel    #1 #2{\cpp \indent \STOMINUSelc    {#1} & \lnbr{linenumber} & 44,30, #1    & \rem {#2} \\}
+\def \tSTOMULTIPLYel #1 #2{\cpp \indent \STOMULTIPLYelc {#1} & \lnbr{linenumber} & 44,20, #1    & \rem {#2} \\}
+\def \tSTODIVIDEel   #1 #2{\cpp \indent \STODIVIDEelc   {#1} & \lnbr{linenumber} & 44,10, #1    & \rem {#2} \\}
+\def \tRCLel  #1 #2{\cpp \indent \RCLelc {#1}    & \lnbr{linenumber} & 45  #1    & \rem {#2} \\}
+
+\def \tFRACel #1{\cpp \indent \FRACelc     & \lnbr{linenumber} & 42 44      & \rem {#1} \\}
+\def \tUSERel #1{\cpp \indent \USERelc     & \lnbr{linenumber} & 42 45      & \rem {#1} \\}
+
+\def \tINTel  #1{\cpp \indent \INTelc      & \lnbr{linenumber} & 43 44      & \rem {#1} \\}
+\def \tMEMel  #1{\cpp \indent \MEMelc      &                   &            & \rem {#1} \\}
+
+% column 6 middle
+\def \tCHSel    #1{\cpp \indent \CHSelc      & \lnbr{linenumber} & 16      & \rem {#1} \\}
+\def \tEEXel #1 #2{\cpp \indent \EEXelc {#1} & \lnbr{linenumber} & 26  #1  & \rem {#2} \\}
+\def \tENTERel  #1{\cpp \indent \ENTERelc    & \lnbr{linenumber} & 36      & \rem {#1} \\}
+
+\def \tPIel    #1{\cpp \indent \PIelc      & \lnbr{linenumber} & 42 16     & \rem {#1} \\}
+\def \ttoRel   #1{\cpp \indent \ttoRelc    & \lnbr{linenumber} & 42 26     & \rem {#1} \\}
+\def \tRANel   #1{\cpp \indent \RANelc     & \lnbr{linenumber} & 42 36     & \rem {#1} \\}
+
+\def \tABSel   #1{\cpp \indent \ABSelc     & \lnbr{linenumber} & 43 16     & \rem {#1} \\}
+\def \ttoPel   #1{\cpp \indent \toPelc     & \lnbr{linenumber} & 43 26     & \rem {#1} \\}
+\def \tLSTXel  #1{\cpp \indent \LSTXelc    & \lnbr{linenumber} & 43 36     & \rem {#1} \\}
+
+% line 1 right
+\def \tNBRel  #1 #2{\cpp \indent \NBRelc {#1}  & \lnbr{linenumber} & #1        & \rem {#2} \\}
+
+\def \tFIXel   #1 #2{\cpp \indent \FIXelc {#1} & \lnbr{linenumber} & 42, 7, #1  & \rem {#2} \\}
+\def \tSCIel   #1 #2{\cpp \indent \SCIelc {#1} & \lnbr{linenumber} & 42, 8, #1  & \rem {#2} \\}
+\def \tENGel   #1 #2{\cpp \indent \ENGelc {#1} & \lnbr{linenumber} & 42, 9, #1  & \rem {#2} \\}
+
+\def \tDEGel   #1{\cpp \indent \DEGelc    & \lnbr{linenumber} & 43  7     & \rem {#1} \\}
+\def \tRADel   #1{\cpp \indent \RADelc    & \lnbr{linenumber} & 43  8     & \rem {#1} \\}
+\def \tGRDel   #1{\cpp \indent \GRDelc    & \lnbr{linenumber} & 43  9     & \rem {#1} \\}
+
+
+% line 2 right
+\def \tXswapIel   #1{\cpp \indent \XswapIelc    & \lnbr{linenumber} & 42  4     & \rem {#1} \\}
+\def \tDSEel      #1{\cpp \indent \DSEelc       & \lnbr{linenumber} & 42  5     & \rem {#1} \\}
+\def \tISGel      #1{\cpp \indent \ISGelc       & \lnbr{linenumber} & 42  6     & \rem {#1} \\}
+
+\def \tSFel    #1 #2{\cpp \indent \SFelc {#1}   & \lnbr{linenumber} & 43, 4, #1   & \rem {#2} \\}
+\def \tCFel    #1 #2{\cpp \indent \CFelc {#1}   & \lnbr{linenumber} & 43, 5, #1   & \rem {#2} \\}
+\def \tFlagel  #1 #2{\cpp \indent \Flagelc {#1} & \lnbr{linenumber} & 43, 6, #1   & \rem {#2} \\}
+
+
+% line 3 right
+\def \tPyxel      #1{\cpp \indent \Pyxelc       & \lnbr{linenumber} & 42  1     & \rem {#1} \\}
+\def \ttoHMSel    #1{\cpp \indent \toHMSelc     & \lnbr{linenumber} & 42  2     & \rem {#1} \\}
+\def \ttoRADel    #1{\cpp \indent \toRADelc     & \lnbr{linenumber} & 42  3     & \rem {#1} \\}
+
+\def \tCyxel      #1{\cpp \indent \Cyxelc       & \lnbr{linenumber} & 43  1     & \rem {#1} \\}
+\def \ttoHel      #1{\cpp \indent \toHelc       & \lnbr{linenumber} & 43  2     & \rem {#1} \\}
+\def \ttoDEGel    #1{\cpp \indent \toDEGelc     & \lnbr{linenumber} & 43  3     & \rem {#1} \\}
+
+% line 4 right
+\def \tFACTel     #1{\cpp \indent \FACTelc      & \lnbr{linenumber} & 42  0     & \rem {#1} \\}
+\def \tYrel       #1{\cpp \indent \Yrelc        & \lnbr{linenumber} & 42 48     & \rem {#1} \\}
+\def \tLRel       #1{\cpp \indent \LRelc        & \lnbr{linenumber} & 42 49     & \rem {#1} \\}
+
+\def \tXOverel       #1{\cpp \indent \XOverelc       & \lnbr{linenumber}  & 43  0     & \rem {#1} \\}
+\def \tsel           #1{\cpp \indent \selc           & \lnbr{linenumber}  & 43 48     & \rem {#1} \\}
+\def \tSigmaMinusel  #1{\cpp \indent \SigmaMinuselc  & \lnbr{linenumber}  & 43 49     & \rem {#1} \\}
+
+\def \tSigmaPlusel   #1{\cpp \indent \SigmaPluselc    & \lnbr{linenumber} & 49        & \rem {#1} \\}
+\def \tPointel       #1{\indent \Pointelc             & {}                & {}        & \rem {#1} \\}
+
+% last column
+\def \tOPdivideel     #1{\cpp \indent \OPdivideelc    & \lnbr{linenumber} & 10     & \rem {#1} \\}
+\def \tOPmultiplyel   #1{\cpp \indent \OPmultiplyelc  & \lnbr{linenumber} & 20     & \rem {#1} \\}
+\def \tOPminusel      #1{\cpp \indent \OPminuselc     & \lnbr{linenumber} & 30     & \rem {#1} \\}
+\def \tOPplusel       #1{\cpp \indent \OPpluselc      & \lnbr{linenumber} & 40     & \rem {#1} \\}
+
+\def \tXsmlreqYel     #1{\cpp \indent \XsmlreqYelc    & \lnbr{linenumber} & 42 10     & \rem {#1} \\}
+\def \tXbigrYel       #1{\cpp \indent \XbigeYelc      & \lnbr{linenumber} & 42 20     & \rem {#1} \\}
+\def \tXnoteqYel      #1{\cpp \indent \XnoteqYelc     & \lnbr{linenumber} & 42 30     & \rem {#1} \\}
+\def \tXeqYel         #1{\cpp \indent \XeqYelc        & \lnbr{linenumber} & 42 40     & \rem {#1} \\}
+
+\def \tXsmlrZEROel    #1{\cpp \indent \XsmlrZEROelc   & \lnbr{linenumber} & 43 10     & \rem {#1} \\}
+\def \tXbigrZEROel    #1{\cpp \indent \XbigrZEROelc   & \lnbr{linenumber} & 43 20     & \rem {#1} \\}
+\def \tXnoteqZEROel   #1{\cpp \indent \XnoteqZEROelc  & \lnbr{linenumber} & 43 30     & \rem {#1} \\}
+\def \tXeqZEROel      #1{\cpp \indent \XeqZEROelc     & \lnbr{linenumber} & 43 40     & \rem {#1} \\}
+
+
+%
+% End of definitions

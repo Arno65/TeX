@@ -1,0 +1,241 @@
+% ***************************************************
+% Definition RPN code for HP-12C
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+% Main keys
+\def \ONtw {\noindent ON }
+\def \PRGMtw {\noindent \fshift P/R }
+
+\def \tONtw      #1{\ONtw      & & & \rem {#1} \\ }
+\def \tPRGMtw    #1{\PRGMtw    & & & \rem {#1} \\ }
+
+% Basic functions without newline and indent codes
+%
+
+% line 1 left
+\def \Ntwc      {$n$}
+\def \Itwc      {$i$}
+\def \PVtwc     {PV}
+\def \PMTtwc    {PMT}
+\def \FVtwc     {FV}
+
+\def \AMORTtwc  {\fshift AMORT}
+\def \INTtwc    {\fshift INT}
+\def \NPVtwc    {\fshift NPV}
+\def \RNDtwc    {\fshift RND}
+\def \IRRtwc    {\fshift IRR}
+
+\def \TWLVXtwc    {\gshift $12 \times$}
+\def \TWLVDIVtwc  {\gshift $12 \div$}
+\def \CFotwc      {\gshift CFo}
+\def \CFjtwc      {\gshift CFj}
+\def \Njtwc       {\gshift Nj}
+
+
+% line 2 left
+\def \YpXtwc       {$y^x$ }
+\def \OverXtwc     {$1/x$ }
+\def \TPERCtwc     {$\%T$ }
+\def \DELTAPERCtwc {$\Delta\%$ }
+\def \PERCENTtwc   {$\%$ }
+
+\def \PRICEtwc     {\fshift PRICE}
+\def \YTMtwc       {\fshift YTM}
+\def \SLtwc        {\fshift SL}
+\def \SOYDtwc      {\fshift SOYD}
+\def \DBtwc        {\fshift Db}
+
+\def \SqrtXtwc     {\gshift $\sqrt{x}$ }
+\def \ExpXtwc      {\gshift $e^x$ }
+\def \LNtwc        {\gshift LN }
+\def \FRACtwc      {\gshift FRAC}
+\def \INTGtwc      {\gshift INTG}
+
+% line 3 left
+\def \RStwc        {R/S}
+\def \SSTtwc       {SST}
+\def \Rdowntwc     {R$\downarrow$}
+\def \XswapYtwc    {$x \lessgtr y$}
+\def \CLXtwc {CL$X$}
+
+\def \PRtwc        {\fshift P/R}
+\def \CLRSIGMAtwc  {\fshift CLEAR $\Sigma$}
+\def \CLRPRGMtwc   {\fshift CLEAR PRGM}
+\def \CLRFINtwc    {\fshift CLEAR FIN}
+\def \CLRREGtwc    {\fshift CLEAR REG}
+\def \CLRPREFIXtwc {\fshift CLEAR PREFIX}
+
+\def \PSEtwc          {\gshift PSE}
+\def \BSTtwc          {\gshift BST}
+\def \GTOtwc        #1{\gshift GTO #1}
+\def \XsmlreqYtwc     {\gshift X$\leqslant$Y }
+\def \XeqZEROtwc      {\gshift X$=$0 }
+
+% line 4 left  (STO +, -, * or / from register 0..4)
+\def \STOtwc          #1{STO #1}
+\def \STOPLUStwc      #1{STO + #1}
+\def \STOMINUStwc     #1{STO - #1}
+\def \STOMULTIPLYtwc  #1{STO $\times$ #1}
+\def \STODIVIDEtwc    #1{STO $\div$ #1}
+\def \RCLtwc          #1{RCL #1}
+
+% column 6 middle
+\def \CHStwc     {CHS}
+\def \EEXtwc   #1{EEX #1}
+\def \ENTERtwc   {ENTER}
+
+\def \DATEtwc    {\gshift DATE }
+\def \DDYStwc    {\gshift $\Delta$DYS }
+\def \LSTXtwc    {\gshift LST$X$ }
+
+
+% line 1 right
+\def \NBRtwc   #1{ #1 }
+
+\def \BEGtwc        {\gshift BEG }
+\def \ENDtwc        {\gshift END }
+\def \MEMtwc        {\gshift MEM }
+
+% line 2 right
+\def \DMYtwc        {\gshift D.MY}
+\def \MDYtwc        {\gshift M.DY}
+\def \XOverWtwc     {\gshift $\bar{x} w$ }
+
+% line 3 right
+\def \Xrtwc         {\gshift $\hat{x},r$ }
+\def \Yrtwc         {\gshift $\hat{y},r$ }
+\def \FACTtwc       {\gshift $n!$ }
+
+% line 4 right
+\def \XOvertwc      {\gshift $\bar{x}$ }
+\def \stwc          {\gshift $s$ }
+\def \SigmaMinustwc {\gshift $\Sigma$- }
+
+\def \SigmaPlustwc  {$\Sigma$+ }
+\def \Pointtwc      {$.$ }
+
+% last column
+\def \OPdividetwc    { $\div$ }
+\def \OPmultiplytwc  { $\times$ }
+\def \OPminustwc     { - }
+\def \OPplustwc      { + }
+
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+% line 1 left
+\def \tNtw         #1{\cpp \indent \Ntwc         & \lnbr{linenumber} & 11       & \rem {#1} \\}
+\def \tItw         #1{\cpp \indent \Itwc         & \lnbr{linenumber} & 12       & \rem {#1} \\}
+\def \tPVtw        #1{\cpp \indent \PVtwc        & \lnbr{linenumber} & 13       & \rem {#1} \\}
+\def \tPMTtw       #1{\cpp \indent \PMTtwc       & \lnbr{linenumber} & 14       & \rem {#1} \\}
+\def \tFVtw        #1{\cpp \indent \FVtwc        & \lnbr{linenumber} & 15       & \rem {#1} \\}
+
+\def \tAMORTtw     #1{\cpp \indent \AMORTtwc     & \lnbr{linenumber} & 42 11    & \rem {#1} \\}
+\def \tINTtw       #1{\cpp \indent \INTtwc       & \lnbr{linenumber} & 42 12    & \rem {#1} \\}
+\def \tNPVtw       #1{\cpp \indent \NPVtwc       & \lnbr{linenumber} & 42 13    & \rem {#1} \\}
+\def \tRNDtw       #1{\cpp \indent \RNDtwc       & \lnbr{linenumber} & 42 14    & \rem {#1} \\}
+\def \tIRRtw       #1{\cpp \indent \IRRtwc       & \lnbr{linenumber} & 42 15    & \rem {#1} \\}
+
+\def \tTWLVXtw     #1{\cpp \indent \TWLVXtwc     & \lnbr{linenumber} & 43 11    & \rem {#1} \\}
+\def \tTWLVDIVtw   #1{\cpp \indent \TWLVDIVtwc   & \lnbr{linenumber} & 43 12    & \rem {#1} \\}
+\def \tCFotw       #1{\cpp \indent \CFovc       & \lnbr{linenumber} & 43 13    & \rem {#1} \\}
+\def \tCFjtw       #1{\cpp \indent \CFjtwc       & \lnbr{linenumber} & 43 14    & \rem {#1} \\}
+\def \tNjtw        #1{\cpp \indent \Njtwc        & \lnbr{linenumber} & 43 15    & \rem {#1} \\}
+
+% line 2 left
+\def \tYpXtw       #1{\cpp \indent \YpXtwc       & \lnbr{linenumber} & 21       & \rem {#1} \\}
+\def \tOverXtw     #1{\cpp \indent \OverXtwc     & \lnbr{linenumber} & 22       & \rem {#1} \\}
+\def \tTPERCtw     #1{\cpp \indent \TPERCtwc     & \lnbr{linenumber} & 23       & \rem {#1} \\}
+\def \tDELTAPERCtw #1{\cpp \indent \DELTAPERCtwc & \lnbr{linenumber} & 24       & \rem {#1} \\}
+\def \tPERCENTtw   #1{\cpp \indent \PERCENTtwc   & \lnbr{linenumber} & 25       & \rem {#1} \\}
+
+\def \tPRICEtw    #1{\cpp \indent \PRICEtwc    & \lnbr{linenumber} & 42 21      & \rem {#1} \\}
+\def \tYMTtw      #1{\cpp \indent \YMTtwc      & \lnbr{linenumber} & 42 22      & \rem {#1} \\}
+\def \tSLtw       #1{\cpp \indent \SLtwc       & \lnbr{linenumber} & 42 23      & \rem {#1} \\}
+\def \tSOYDtw     #1{\cpp \indent \SOYDtwc     & \lnbr{linenumber} & 42 24      & \rem {#1} \\}
+\def \tDBtw       #1{\cpp \indent \DBtwc       & \lnbr{linenumber} & 42 25      & \rem {#1} \\}
+
+\def \tSqrtXtw    #1{\cpp \indent \SqrtXtwc    & \lnbr{linenumber} & 43 21      & \rem {#1} \\}
+\def \tExpXtw     #1{\cpp \indent \ExpXtwc     & \lnbr{linenumber} & 43 22      & \rem {#1} \\}
+\def \tLNtw       #1{\cpp \indent \LNtwc       & \lnbr{linenumber} & 43 23      & \rem {#1} \\}
+\def \tFRACtw     #1{\cpp \indent \FRACtwc     & \lnbr{linenumber} & 43 24      & \rem {#1} \\}
+\def \tINTGtw     #1{\cpp \indent \INTGtwc     & \lnbr{linenumber} & 43 25      & \rem {#1} \\}
+
+
+
+% line 3 left
+\def \tRStw       #1{\cpp \indent \RStwc       & \lnbr{linenumber} & 31          & \rem {#1} \\}
+\def \tSSTtw      #1{\cpp \indent \SSTtwc      &                   &             & \rem {#1} \\}
+\def \tRdowntw    #1{\cpp \indent \Rdowntwc    & \lnbr{linenumber} & 33          & \rem {#1} \\}
+\def \tXswapYtw   #1{\cpp \indent \XswapYtwc   & \lnbr{linenumber} & 34          & \rem {#1} \\}
+\def \tCLXtw      #1{\cpp \indent \CLXtwc      & \lnbr{linenumber} & 35          & \rem {#1} \\}
+
+\def \tPRtw         #1{\cpp \indent \PRtwc        & {}                &          & \rem {#1} \\}  
+\def \tCLRSIGMAtw   #1{\cpp \indent \CLRSIGMAtwc  & \lnbr{linenumber} & 42 32    & \rem {#1} \\}
+\def \tCLRPRGMtw    #1{             \CLRPRGMtwc   & {}                & {}       & \rem {#1} \\}
+\def \tCLRFINtw     #1{\cpp \indent \CLRFINtwc    & \lnbr{linenumber} & 42 34    & \rem {#1} \\}
+\def \tCLRREGtw     #1{\cpp \indent \CLRREGtwc    & \lnbr{linenumber} & 42 35    & \rem {#1} \\}
+\def \tCLRPREFIXtw  #1{\cpp \indent \CLRPREFIXtwc & \lnbr{linenumber} & 42 36    & \rem {#1} \\}
+
+\def \tPSEtw          #1{\cpp \indent \PSEtwc         & \lnbr{linenumber} & 43 31     & \rem {#1} \\}
+\def \tBSTtw          #1{\cpp \indent \BSTtwc         &                   &           & \rem {#1} \\}
+\def \tGTOtw       #1 #2{\cpp \indent \GTOtwc {#1}    & \lnbr{linenumber} & 43,33 #1  & \rem {#2} \\}
+\def \tXsmlreqYtw     #1{\cpp \indent \XsmlreqYtwc    & \lnbr{linenumber} & 43 34     & \rem {#1} \\}
+\def \tXeqZEROtw      #1{\cpp \indent \XeqZEROtwc     & \lnbr{linenumber} & 43 35     & \rem {#1} \\}
+
+
+% line 4 left
+\def \tSTOtw          #1 #2{\cpp \indent \STOtwc {#1}          & \lnbr{linenumber} & 44  #1      & \rem {#2} \\}
+\def \tSTOPLUStw      #1 #2{\cpp \indent \STOPLUStwc {#1}      & \lnbr{linenumber} & 44 40 #1    & \rem {#2} \\}
+\def \tSTOMINUStw     #1 #2{\cpp \indent \STOMINUStwc {#1}     & \lnbr{linenumber} & 44 30 #1    & \rem {#2} \\}
+\def \tSTOMULTIPLYtw  #1 #2{\cpp \indent \STOMULTIPLYtwc {#1}  & \lnbr{linenumber} & 44 20 #1    & \rem {#2} \\}
+\def \tSTODIVIDEtw    #1 #2{\cpp \indent \STODIVIDEtwc {#1}    & \lnbr{linenumber} & 44 10 #1    & \rem {#2} \\}
+\def \tRCLtw          #1 #2{\cpp \indent \RCLtwc {#1}          & \lnbr{linenumber} & 45  #1      & \rem {#2} \\}
+
+
+% column 6 middle
+\def \tCHStw    #1{\cpp \indent \CHStwc      & \lnbr{linenumber} & 16      & \rem {#1} \\}
+\def \tEEXtw #1 #2{\cpp \indent \EEXtwc {#1} & \lnbr{linenumber} & 26  #1  & \rem {#2} \\}
+\def \tENTERtw  #1{\cpp \indent \ENTERtwc    & \lnbr{linenumber} & 36      & \rem {#1} \\}
+
+\def \tDATEtw   #1{\cpp \indent \DATEtwc     & \lnbr{linenumber} & 43 16     & \rem {#1} \\}
+\def \tDDYStw   #1{\cpp \indent \DDYStwc     & \lnbr{linenumber} & 43 26     & \rem {#1} \\}
+\def \tLSTXtw   #1{\cpp \indent \LSTXtwc     & \lnbr{linenumber} & 43 36     & \rem {#1} \\}
+
+% line 1 right
+\def \tNBRtw  #1 #2{\cpp \indent \NBRtwc {#1}  & \lnbr{linenumber} & #1        & \rem {#2} \\}
+
+\def \tBEGtw   #1{\cpp \indent \BEGtwc      & \lnbr{linenumber} & 43  7      & \rem {#1} \\}
+\def \tENDtw   #1{\cpp \indent \ENDtwc      & \lnbr{linenumber} & 43  8      & \rem {#1} \\}
+\def \tMEMtw   #1{\cpp \indent \MEMtwc      &                   &            & \rem {#1} \\}
+
+% line 2 right
+\def \tDMYtw     #1{\cpp \indent \DMYtwc      & \lnbr{linenumber} & 43  4      & \rem {#1} \\}
+\def \tMDYtw     #1{\cpp \indent \MDYtwc      & \lnbr{linenumber} & 43  5      & \rem {#1} \\}
+\def \tXOverWtw  #1{\cpp \indent \XOverWtwc   & \lnbr{linenumber} & 43  6      & \rem {#1} \\}
+
+% line 3 right
+\def \tXrtw       #1{\cpp \indent \Xrtwc        & \lnbr{linenumber} & 43  1     & \rem {#1} \\}
+\def \tYrtw       #1{\cpp \indent \Yrtwc        & \lnbr{linenumber} & 43  2     & \rem {#1} \\}
+\def \tFACTtw     #1{\cpp \indent \FACTtwc      & \lnbr{linenumber} & 43  3     & \rem {#1} \\}
+
+
+% line 4 right
+\def \tXOvertw       #1{\cpp \indent \XOvertwc       & \lnbr{linenumber}  & 43  0     & \rem {#1} \\}
+\def \tstw           #1{\cpp \indent \stwc           & \lnbr{linenumber}  & 43 48     & \rem {#1} \\}
+\def \tSigmaMinustw  #1{\cpp \indent \SigmaMinustwc  & \lnbr{linenumber}  & 43 49     & \rem {#1} \\}
+
+\def \tSigmaPlustw   #1{\cpp \indent \SigmaPlustwc    & \lnbr{linenumber} & 49        & \rem {#1} \\}
+\def \tPointtw       #1{\indent \Pointtwc             & {}                & {}        & \rem {#1} \\}
+
+
+% last column
+\def \tOPdividetw     #1{\cpp \indent \OPdividetwc    & \lnbr{linenumber} & 10     & \rem {#1} \\}
+\def \tOPmultiplytw   #1{\cpp \indent \OPmultiplytwc  & \lnbr{linenumber} & 20     & \rem {#1} \\}
+\def \tOPminustw      #1{\cpp \indent \OPminustwc     & \lnbr{linenumber} & 30     & \rem {#1} \\}
+\def \tOPplustw       #1{\cpp \indent \OPplustwc      & \lnbr{linenumber} & 40     & \rem {#1} \\}
+
+
+% End of definitions

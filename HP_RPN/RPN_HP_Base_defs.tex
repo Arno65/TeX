@@ -1,0 +1,109 @@
+% ********************************************************
+% Definition RPN code for HP programable calculators
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+\usepackage{amssymb}
+\usepackage{ifthen}
+
+
+% page setting (landscape)
+\marginparwidth = 20pt
+\textwidth = 650pt
+% some extra space for the boxed function keys
+\linespread {1.28}
+
+% line counter value - counter value will be typeset with 3 digits always => 000
+\newcommand{\addZERO}[1]
+{
+  \ifthenelse{#1<10}{0#1}{#1}
+}
+
+
+\def \resetcounter {\setcounter{linenumber}{0}}
+\def \cpp {\addtocounter{linenumber}{1}\noindent}
+\def \lnbr #1{\ignorespaces \addZERO{\arabic{#1}}\unskip }
+
+% Remarks in typewrite face
+\def\rem #1 { \rm #1 \tt }
+
+% Found on the internet :-)
+% Draw a box around a text or letter (for function buttons [f] and [g])
+\makeatletter
+\newcommand{\sqbox}[1]{%
+    \@begin@tempboxa\hbox{#1}%
+    \@tempdima=\dimexpr\width-\totalheight\relax
+    \ifdim\@tempdima<\z@
+        \fbox{\hbox{\hspace{-.1\@tempdima}\usebox\@tempboxa\hspace{-.1\@tempdima}}}%
+    \else
+        \ht\@tempboxa=\dimexpr\ht\@tempboxa+.1\@tempdima\relax
+        \dp\@tempboxa=\dimexpr\dp\@tempboxa+.1\@tempdima\relax
+        \fbox{\usebox\@tempboxa}%
+    \fi
+    \@end@tempboxa
+}
+\makeatother
+
+
+\newcounter{linenumber}
+\resetcounter
+
+
+
+\def \shift {$\square$ }
+
+\def \fshift {\sqbox{f} }
+\def \gshift {\sqbox{g} }
+
+\def \grshift {\sqbox{gr} }
+\def \whshift {\sqbox{wh} }
+
+
+
+% Top page (tabular)
+\def \tHeader {
+key strokes & step & display code(s) & remark \\
+\phantom{ ThisIsAbsoluteANoneSenceSentenceAsAFiller } & \phantom{ 0000 } & \phantom{ 000000000 } & \phantom{...} \\ 
+}
+
+% *********************************************************** 
+% Start of tabular with PRN code
+
+\def \tStarttabular { 
+\tt
+\bigskip 
+\noindent 
+\begin{tabular}{ l l l l} 
+\tHeader 
+}
+
+\def \tRem #1{ {} & {} & {} &  \rem {#1} \\ }
+
+\def \tNewPage {\end{tabular} \clearpage \tStarttabular }
+
+% End of BASE definitions
+
+% ALL the calculator specific definitions
+
+% Calculator model          Form
+% HP 11C                    \tKEYel
+% HP 12C                    \tKEYtw
+% HP 15C                    \tKEYfi
+% HP 16C                    \tKEYsi
+% HP 25                     \tKEYtf
+% HP 32Sii                  \tKEYtt
+% HP 41C family             \tKEYfo
+% HP 42S                    \tKEYft
+
+%\input{../RPN_HP10C_defs}
+\input{../RPN_HP11C_defs}
+\input{../RPN_HP12C_defs}
+\input{../RPN_HP15C_defs}
+\input{../RPN_HP16C_defs}
+\input{../RPN_HP25_defs}
+%\input{../RPN_HP32Sii_defs}
+\input{../RPN_HP41C_defs}
+%\input{../RPN_HP42S_defs}
+
+% End of Base definitions

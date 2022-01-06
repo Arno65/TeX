@@ -1,0 +1,318 @@
+% ***************************************************
+% Definition RPN code for HP-41C (CV/CX) family
+% % (cl) 2013 by Arno Jacobs
+%
+
+\def \ALPHAfo #1{[ALPHA]#1[ALPHA] }
+
+% Top keys
+\def \ONfo       {\noindent [ON] }
+\def \USERfo     {\noindent [USER] }
+\def \PRGMfo     {\noindent [PRGM] }
+\def \GTOendfo   {\shift GTO . . }
+\def \SIZEfo   #1{\noindent XEQ \ALPHAfo{SIZE} #1}
+
+\def \tONfo        #1{\ONfo       & & & \rem {#1} \\ }
+\def \tONpBACKfo   #1{\ONfo + $\leftarrow$  & & & \rem {#1} \\ }
+
+\def \tUSERfo      #1{\USERfo     & & & \rem {#1} \\ }
+\def \tPRGMfo      #1{\PRGMfo     & & & \rem {#1} \\ }
+\def \tGTOendfo    #1{\GTOendfo   & & 00 REG nnn & \rem {#1} \\ }
+\def \tSIZEfo   #1 #2{\SIZEfo{#1} & & & \rem {#2} \\ }
+
+% Basic functions as displayed on a HP 41C family machine
+%
+\def \SqrXfod        {X$\nearrow$2}
+\def \ENTERfod       {ENTER$\nearrow$}
+\def \SIGMAminfod    {$\Sigma$-}
+\def \XnoteqZEROfod  {X$\neq$0?}
+\def \XnoteqYfod     {X$\neq$Y?}
+
+
+% Basic functions without newline and indent codes
+%
+\def \SIGMAplusfoc {$\Sigma$+ }
+\def \SIGMAminfoc {\shift $\Sigma$- }
+\def \OverXfoc {$1/x$ }
+\def \SqrtXfoc {$\sqrt{x}$ }
+\def \YpXfoc {\shift $y^x$ }
+\def \SqrXfoc {\shift $x^2$ }
+\def \TENpXfoc {\shift $10^x$ }
+\def \ExpXfoc {\shift $e^x$ }
+
+\def \XswapYfoc {$X \lessgtr Y$ }
+\def \Rdownfoc {R$\downarrow$ }
+\def \ENTERfoc {ENTER$\uparrow$ }
+
+\def \SFfoc #1 {\shift SF #1 }
+\def \CFfoc #1 {\shift CF #1 }
+\def \FSfoc #1 {\shift FS? #1 }
+
+\def \PtoRfoc {\shift P $\to$ R}
+\def \RtoPfoc {\shift R $\to$ P }
+\def \FIXfoc #1 {\shift FIX #1 }
+\def \SCIfoc #1 {\shift SCI #1 }
+\def \ENGfoc #1 {\shift ENG #1  }
+\def \PIfoc {\shift $\pi$ }
+\def \LASTXfoc {\shift LAST$X$ }
+\def \VIEWfoc #1 {\shift VIEW #1 }
+
+\def \ArcSINfoc {\shift SIN$^{-1}$ }
+\def \ArcCOSfoc {\shift COS$^{-1}$ }
+\def \ArcTANfoc {\shift TAN$^{-1}$ }
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+\def \SIGMAplusfo {\indent \SIGMAplusfoc }
+\def \tSIGMAplusfo #1{\cpp \SIGMAplusfo & \lnbr{linenumber} & \SIGMAplusfoc & \rem {#1} \\ }
+
+\def \OverXfo {\indent \OverXfoc }
+\def \tOverXfo #1{\cpp \OverXfo & \lnbr{linenumber} & {1/X} & \rem {#1} \\ }
+
+\def \SqrtXfo {\indent \SqrtXfoc }
+\def \tSqrtXfo #1{\cpp \SqrtXfo & \lnbr{linenumber} & {SQRT} & \rem {#1} \\ }
+
+\def \LOGfo {\indent LOG  }
+\def \tLOGfo #1{\cpp \LOGfo & \lnbr{linenumber} & {LOG} & \rem {#1} \\ }
+
+\def \LNfo {\indent LN }
+\def \tLNfo #1{\cpp \LNfo & \lnbr{linenumber} & {LN} & \rem {#1} \\ }
+
+\def \SIGMAminfo {\indent \SIGMAminfoc }
+\def \tSIGMAminfo #1{\cpp \SIGMAminfo & \lnbr{linenumber} & \SIGMAminfod & \rem {#1} \\ }
+
+\def \YpXfo {\indent \YpXfoc }
+\def \tYpXfo #1{\cpp \YpXfo & \lnbr{linenumber} & {Y$\nearrow$X} & \rem {#1} \\ }
+
+\def \SqrXfo {\indent \SqrXfoc }
+\def \tSqrXfo #1{\cpp \SqrXfo & \lnbr{linenumber} & {X$\nearrow$2} & \rem {#1} \\ }
+
+\def \TENpXfo {\indent \TENpXfoc }
+\def \tTENpXfo #1{\cpp \TENpXfo & \lnbr{linenumber} & {10$\nearrow$X} & \rem {#1} \\ }
+
+\def \ExpXfo {\indent \ExpXfoc }
+\def \tExpXfo #1{\cpp \ExpXfo & \lnbr{linenumber} & {E$\nearrow$X} & \rem {#1} \\ }
+
+\def \XswapYfo {\indent \XswapYfoc }
+\def \tXswapYfo #1{\cpp \XswapYfo & \lnbr{linenumber} & {X<>Y} & \rem {#1} \\ }
+
+\def \Rdownfo {\indent \Rdownfoc }
+\def \tRdownfo #1{\cpp \Rdownfo & \lnbr{linenumber} & {RDN} & \rem {#1} \\ }
+
+\def \SINfo {\indent SIN }
+\def \tSINfo #1{\cpp \SINfo & \lnbr{linenumber} & {SIN} & \rem {#1} \\ }
+
+\def \COSfo {\indent COS }
+\def \tCOSfo #1{\cpp \COSfo & \lnbr{linenumber} & {COS} & \rem {#1} \\ }
+
+\def \TANfo {\indent TAN }
+\def \tTANfo #1{\cpp \TANfo & \lnbr{linenumber} & {TAN} & \rem {#1} \\ }
+
+\def \CLSIGMAfo {\indent \shift CL$\Sigma$ }
+\def \tCLSIGMAfo #1{\cpp \CLSIGMAfo & \lnbr{linenumber} & {CL$\Sigma$} & \rem {#1} \\ }
+
+\def \PERCENTfo {\indent \shift \% }
+\def \tPERCENTfo #1{\cpp \PERCENTfo & \lnbr{linenumber} & {\%} & \rem {#1} \\ }
+
+\def \ArcSINfo {\indent \ArcSINfoc }
+\def \tArcSINfo #1{\cpp \ArcSINfo & \lnbr{linenumber} & {ASIN} & \rem {#1} \\ }
+
+\def \ArcCOSfo {\indent \ArcCOSfoc }
+\def \tArcCOSfo #1{\cpp \ArcCOSfo & \lnbr{linenumber} & {ACOS} & \rem {#1} \\ }
+
+\def \ArcTANfo {\indent \ArcTANfoc }
+\def \tArcTANfo #1{\cpp \ArcTANfo & \lnbr{linenumber} & {ATAN} & \rem {#1} \\ }
+
+\def \XEQafo #1{\indent XEQ \ALPHAfo{#1}}
+\def \XEQfafo #1 #2 {\indent XEQ \ALPHAfo{#1} {#2}}
+\def \tXEQafo #1 #2 {\cpp \XEQafo {#1} & \lnbr{linenumber} & {XEQ"{#1}} & \rem {#2} \\ }
+\def \tXEQfnfo #1 #2 {\cpp \XEQafo {#1} & \lnbr{linenumber} & {#1} & \rem {#2} \\ }
+
+\def \XEQfo #1{\indent XEQ #1}
+\def \tXEQfo #1 #2 {\cpp \XEQfo {#1} & \lnbr{linenumber} & {XEQ {#1}} & \rem {#2} \\ }
+
+\def \STOfo #1{\indent STO #1}
+\def \tSTOfo #1 #2 {\cpp \STOfo {#1} & \lnbr{linenumber} & {STO {#1}} & \rem {#2} \\}
+
+\def \STOPLUSfo #1{\indent STO + #1}
+\def \tSTOPLUSfo #1 #2 {\cpp \STOPLUSfo {#1} & \lnbr{linenumber} & {ST+ {#1}} & \rem {#2} \\}
+
+\def \STOMINUSfo #1{\indent STO - #1}
+\def \tSTOMINUSfo #1 #2 {\cpp \STOMINUSfo {#1} & \lnbr{linenumber} & {ST- {#1}} & \rem {#2} \\}
+
+\def \STOMULTIPLYfo #1{\indent STO $\times$ #1}
+\def \tSTOMULTIPLYfo #1 #2 {\cpp \STOMULTIPLYfo {#1} & \lnbr{linenumber} & {ST* {#1}} & \rem {#2} \\}
+
+\def \STODIVIDEfo #1{\indent STO $\div$ #1}
+\def \tSTODIVIDEfo #1 #2 {\cpp \STODIVIDEfo {#1} & \lnbr{linenumber} & {ST/ {#1}} & \rem {#2} \\}
+
+\def \RCLfo #1{\indent RCL #1}
+\def \tRCLfo #1 #2 {\cpp \RCLfo {#1} & \lnbr{linenumber} & {RCL {#1}} & \rem {#2} \\}
+
+\def \STOINDfo #1{\indent STO \shift #1}
+\def \tSTOINDfo #1 #2 {\cpp \STOINDfo {#1} & \lnbr{linenumber} & {STO IND {#1}} & \rem {#2} \\}
+
+\def \RCLINDfo #1{\indent RCL \shift #1}
+\def \tRCLINDfo #1 #2 {\cpp \RCLINDfo {#1} & \lnbr{linenumber} & {RCL IND {#1}} & \rem {#2} \\}
+
+\def \SSTfo {\indent SST }
+\def \tSSTfo #1{\cpp \SSTfo & \lnbr{linenumber} & {SST} & \rem {#1} \\}
+
+\def \ASNfo #1 #2{\noindent \shift ASN \ALPHAfo{#1} #2}
+\def \tASNfo #1 #2 #3{\ASNfo {#1} {#2} &  &  & \rem {#3}\\}
+
+\def \LBLafo #1{\noindent \shift LBL \ALPHAfo{#1}} 
+\def \tLBLafo #1 #2{\cpp \LBLafo {#1} & \lnbr{linenumber} & LBL"{#1} & \rem {#2} \\}
+
+\def \LBLfo #1{\noindent \shift LBL #1}
+\def \tLBLfo #1 #2{\cpp \LBLfo {#1} & \lnbr{linenumber} & LBL {#1} & \rem {#2} \\}
+
+\def \GTOafo #1{\indent \shift GTO \ALPHAfo{#1}}
+\def \tGTOafo #1 #2{\cpp \GTOafo {#1} & \lnbr{linenumber} & GTO"{#1} & \rem {#2} \\}
+
+\def \GTOfo #1{\indent \shift GTO #1}
+\def \tGTOfo #1 #2{\cpp \GTOfo {#1} & \lnbr{linenumber} & GTO {#1} & \rem {#2} \\}
+
+\def \BSTfo {\indent \shift BST }
+\def \tBSTfo #1{\cpp \BSTfo & \lnbr{linenumber} & {BST} & \rem {#1} \\ }
+
+\def \ENTERfo {\indent \ENTERfoc }
+\def \tENTERfo #1{\cpp \ENTERfo & \lnbr{linenumber} & {\ENTERfod} & \rem {#1} \\}
+
+\def \CHSfo {\indent CHS }
+\def \tCHSfo #1{\cpp \CHSfo & \lnbr{linenumber} & {CHS} & \rem {#1} \\}
+
+\def \EEXfo #1{\indent EEX #1 }
+\def \tEEXfo #1 #2{\cpp \EEXfo {#1} & \lnbr{linenumber} & {1 E#1} & \rem {#2} \\}
+
+\def \BACKfo {\indent $\leftarrow$ }
+\def \tBACKfo #1{\BACKfo &  &  & \rem {#1}\\}
+
+\def \CATALOGfo #1 {\noindent \shift CATALOG #1 }
+\def \tCATALOGfo #1 #2{\CATALOGfo {#1} &  &  & \rem {#2}\\}
+
+\def \ISGfo #1 {\indent \shift ISG #1 }
+\def \tISGfo #1 #2{\cpp \ISGfo {#1} & \lnbr{linenumber} & {ISG #1} & \rem {#2} \\}
+
+\def \ISGINDfo #1 {\indent \shift ISG \shift #1 }
+\def \tISGINDfo #1 #2{\cpp \ISGINDfo {#1} & \lnbr{linenumber} & {ISG IND #1} & \rem {#2} \\}
+
+\def \RTNfo {\indent \shift RTN }
+\def \tRTNfo #1{\cpp \RTNfo & \lnbr{linenumber} & {RTN} & \rem {#1} \\}
+
+\def \CLXAfo {\indent \shift CL$X$/A }
+\def \tCLXAfo #1{\cpp \CLXAfo & \lnbr{linenumber} & {CLX} & \rem {#1} \\}
+
+\def \OPminusfo {\indent - }
+\def \tOPminusfo #1{\cpp \OPminusfo & \lnbr{linenumber} & {-} & \rem {#1} \\}
+
+\def \OPplusfo {\indent + }
+\def \tOPplusfo #1{\cpp \OPplusfo & \lnbr{linenumber} & {+} & \rem {#1} \\}
+
+\def \OPmultiplyfo {\indent $\times$ }
+\def \tOPmultiplyfo #1{\cpp \OPmultiplyfo & \lnbr{linenumber} & {*} & \rem {#1} \\}
+
+\def \OPdividefo {\indent $\div$ }
+\def \tOPdividefo #1{\cpp \OPdividefo & \lnbr{linenumber} & {/} & \rem {#1} \\}
+
+\def \XeqYfo {\indent \shift X$=$Y? }
+\def \tXeqYfo #1{\cpp \XeqYfo & \lnbr{linenumber} & {X$=$Y?} & \rem {#1} \\}
+
+\def \XsmlreqYfo {\indent \shift X$\leqslant$Y? }
+\def \tXsmlreqYfo #1{\cpp \XsmlreqYfo & \lnbr{linenumber} & {X$<=$Y?} & \rem {#1} \\}
+
+\def \XbgrYfo {\indent \shift X$>$Y? }
+\def \tXbgrYfo #1{\cpp \XbgrYfo & \lnbr{linenumber} & {X$>$Y?} & \rem {#1} \\}
+
+\def \XeqZEROfo {\indent \shift X$=$0? }
+\def \tXeqZEROfo #1{\cpp \XeqZEROfo & \lnbr{linenumber} & {X$=$0?} & \rem {#1} \\}
+
+\def \NBRfo #1 {\indent $#1$}
+\def \tNBRfo #1 #2{\cpp \NBRfo {#1} & \lnbr{linenumber} & {#1} & \rem {#2} \\}
+
+\def \NBRminusfo #1 {\indent $#1$ CHS}
+\def \tNBRminusfo #1 #2{\cpp \NBRminusfo {#1} & \lnbr{linenumber} & -{#1} & \rem {#2} \\}
+
+\def \RSfo {\indent R/S }
+\def \tRSfo #1{\cpp \RSfo & \lnbr{linenumber} & {STOP} & \rem {#1} \\}
+
+\def \SFfo #1 {\indent \SFfoc #1 }
+\def \tSFfo #1 #2{\cpp \SFfo {#1} & \lnbr{linenumber} & {SF #1} & \rem {#2} \\}
+
+\def \SFINDfo #1 {\indent \SFfoc \shift #1 }
+\def \tSFINDfo #1 #2{\cpp \SFINDfo {#1} & \lnbr{linenumber} & {SF IND #1} & \rem {#2} \\}
+
+\def \CFfo #1 {\indent \CFfoc #1 }
+\def \tCFfo #1 #2{\cpp \CFfo {#1} & \lnbr{linenumber} & {CF #1} & \rem {#2} \\}
+
+\def \CFINDfo #1 {\indent \CFfoc \shift #1 }
+\def \tCFINDfo #1 #2{\cpp \CFINDfo {#1} & \lnbr{linenumber} & {CF IND #1} & \rem {#2} \\}
+
+\def \FSfo #1 {\indent \FSfoc #1 }
+\def \tFSfo #1 #2{\cpp \FSfo {#1} & \lnbr{linenumber} & {FS? #1} & \rem {#2} \\}
+
+\def \FSINDfo #1 {\indent \FSfoc \shift #1 }
+\def \tFSINDfo #1 #2{\cpp \FSINDfo {#1} & \lnbr{linenumber} & {FS? IND #1} & \rem {#2} \\}
+
+\def \BEEPfo {\indent \shift BEEP }
+\def \tBEEPfo #1{\cpp \BEEPfo & \lnbr{linenumber} & {BEEP} & \rem {#1} \\}
+
+\def \PtoRfo {\indent  \PtoRfoc }
+\def \tPtoRfo #1{\cpp \PtoRfo & \lnbr{linenumber} & {P-R} & \rem {#1} \\}
+
+\def \RtoPfo {\indent  \RtoPfoc }
+\def \tRtoPfo #1{\cpp \RtoPfo & \lnbr{linenumber} & {R-P} & \rem {#1} \\}
+
+\def \FIXfo #1 {\indent  \FIXfoc #1 }
+\def \tFIXfo #1 #2{\cpp \FIXfo {#1} & \lnbr{linenumber} & {FIX #1} & \rem {#2} \\}
+
+\def \SCIfo #1 {\indent  \SCIfoc #1 }
+\def \tSCIfo #1 #2{\cpp \SCIfo {#1} & \lnbr{linenumber} & {SCI #1} & \rem {#2} \\}
+
+\def \ENGfo #1 {\indent  \ENGfoc #1  }
+\def \tENGfo #1 #2{\cpp \ENGfo {#1} & \lnbr{linenumber} & {ENG #1} & \rem {#2} \\}
+
+\def \PIfo {\indent \PIfoc }
+\def \tPIfo #1{\cpp \PIfo & \lnbr{linenumber} & {PI} & \rem {#1} \\}
+
+\def \LASTXfo {\indent \LASTXfoc }
+\def \tLASTXfo #1{\cpp \LASTXfo & \lnbr{linenumber} & {LASTX} & \rem {#1} \\}
+
+\def \VIEWfo #1 {\indent \VIEWfoc #1 }
+\def \tVIEWfo #1 #2{\cpp \VIEWfo #1 & \lnbr{linenumber} & {VIEW #1} & \rem {#2} \\}
+
+\def \VIEWINDfo #1 {\indent \VIEWfoc \shift #1 }
+\def \tVIEWINDfo #1 #2{\cpp \VIEWINDfo #1 & \lnbr{linenumber} & {VIEW IND #1} & \rem {#2} \\}
+
+
+
+% Extra function (XEQ [ALPHA]... )
+
+\def \XsmlrZEROfo {\indent XEQ \ALPHAfo {X \shift I \shift 0 ?} }
+\def \tXsmlrZEROfo #1{\cpp \XsmlrZEROfo & \lnbr{linenumber} & {X$<$0?} & \rem {#1} \\}
+
+\def \XbigrZEROfo {\indent XEQ \ALPHAfo {X \shift J \shift 0 ?} }
+\def \tXbigrZEROfo #1{\cpp \XbigrZEROfo & \lnbr{linenumber} & {X$>$0?} & \rem {#1} \\}
+
+\def \XnoteqZEROfo {\indent XEQ \ALPHAfo {X \shift H \shift 0 ?} }
+\def \tXnoteqZEROfo #1{\cpp \XnoteqZEROfo & \lnbr{linenumber} & {\XnoteqZEROfod} & \rem {#1} \\}
+
+\def \XnoteqYfo {\indent XEQ \ALPHAfo {X \shift H Y ?} }
+\def \tXnoteqYfo #1{\cpp \XnoteqYfo & \lnbr{linenumber} & {\XnoteqYfod} & \rem {#1} \\}
+
+
+% ***********************************************************
+% A COLLECTION OF EXTRA FUNCTIONS ON THE HP-41CX
+
+% TIME FUNCTIONS 
+
+% EXTENDED FUNCTIONS
+
+
+% ***********************************************************
+% A COLLECTION OF EXTRA FUNCTIONS IN PAC's
+
+% MATH PAC FUNCTIONS
+
+% STAT PAC FUNCTIONS
+

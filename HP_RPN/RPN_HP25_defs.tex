@@ -1,0 +1,241 @@
+% ***************************************************
+% Definition RPN code for HP-25 model
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+
+% Main keys
+\def \ONtf   {\noindent ON }
+\def \PRGMtf {\noindent $\leftarrow$ PRGM }
+\def \RUNtf  {\noindent $\rightarrow$ RUN }
+
+\def \tONtf      #1{\ONtf      & & & \rem {#1} \\ }
+\def \tPRGMtf    #1{\PRGMtf    & & & \rem {#1} \\ }
+\def \tRUNtf     #1{\RUNtf     & & & \rem {#1} \\ }
+
+% Basic functions without newline and indent codes
+%
+
+% line 1 
+\def \SSTtfc {SST}
+\def \BSTtfc {BST}
+\def \GTOtfc #1{GTO #1}
+% F shift
+% G shift
+
+\def \FIXtfc #1{\fshift FIX #1 }
+\def \SCItfc #1{\fshift SCI #1 }
+\def \ENGtfc #1{\fshift ENG #1  }
+
+
+% line 2
+\def \XswapYtfc     {$x \lessgtr y$}
+\def \Rdowntfc      {R$\downarrow$}
+\def \STOtfc      #1{STO #1}
+\def \RCLtfc      #1{RCL #1}
+\def \SigmaPlustfc  {$\Sigma$+ }
+
+\def \STOPLUStfc       #1{STO + #1}
+\def \STOMINUStfc      #1{STO - #1}
+\def \STOMULTIPLYtfc   #1{STO $\times$ #1}
+\def \STODIVIDEtfc     #1{STO $\div$ #1}
+
+% I have read about a STO + instruction. Please test this on the calculator.
+
+\def \XOvertfc      {\fshift $\bar{x}$ }
+\def \stfc          {\fshift $s$ }
+\def \SigmaMinustfc {\fshift $\Sigma$- }
+
+\def \PERCENTtfc    {\gshift $\%$ }
+\def \OverXtfc      {\gshift $1/x$ }
+
+% line 3
+\def \ENTERtfc  {ENTER}
+\def \CHStfc    {CHS}
+\def \EEXtfc    {EEX}
+\def \CLXtfc    {CL$X$}
+
+\def \CLRPREFIXtfc {\fshift CLEAR PREFIX}
+\def \CLRPRGMtfc   {\fshift CLEAR PRGM}
+\def \CLRREGtfc    {\fshift CLEAR REG}
+\def \CLRSTKtfc    {\fshift CLEAR STK}
+
+\def \DEGtfc   {\gshift DEG }
+\def \RADtfc   {\gshift RAD }
+\def \GRDtfc   {\gshift GRD }
+
+
+% line 4 - 7
+
+
+% Numbers
+\def \NBRtfc #1{ #1 }
+
+%  . & R/S
+\def \Pointtfc       {$.$ }
+\def \RStfc          {R/S}
+
+
+% Operators - + X /  column
+\def \OPminustfc     { - }
+\def \OPplustfc      { + }
+\def \OPmultiplytfc  { $\times$ }
+\def \OPdividetfc    { $\div$ }
+
+\def \XsmlrYtfc       {\fshift X$<$Y }
+\def \XbigreqYtfc     {\fshift X$\geqslant$Y }
+\def \XnoteqYtfc      {\fshift X$\neq$Y }
+\def \XeqYtfc         {\fshift X$=$Y  }
+
+\def \XsmlrZEROtfc    {\gshift X$<$0 }
+\def \XbigreqZEROtfc  {\gshift X$\geqslant$0 }
+\def \XnoteqZEROtfc   {\gshift X$\neq$0 }
+\def \XeqZEROtfc      {\gshift X$=$0 }
+
+% column 2
+\def \LNtfc        {\fshift LN }
+\def \SINtfc       {\fshift SIN}
+\def \INTtfc       {\fshift INT}
+\def \toHMStfc     {\fshift $\rightarrow$H.MS }
+
+\def \ExpXtfc      {\gshift $e^x$ }
+\def \ARCSINtfc    {\gshift SIN$^{-1}$}
+\def \FRACtfc      {\gshift FRAC}
+\def \toHtfc       {\gshift $\rightarrow$H }
+
+
+% column 3
+\def \LOGtfc       {\fshift LOG }
+\def \COStfc       {\fshift COS}
+\def \SqrtXtfc     {\fshift $\sqrt{x}$ }
+\def \LASTXtfc     {\fshift LAST$x$ }
+
+\def \TENpXtfc     {\gshift $10^x$ }
+\def \ARCCOStfc    {\gshift COS$^{-1}$}
+\def \SqrXtfc      {\gshift $x^2$ }
+\def \PItfc        {\gshift $\pi$ }
+
+
+% column 4
+\def \toRtfc       {\fshift $\rightarrow R$ }
+\def \TANtfc       {\fshift TAN}
+\def \YpXtfc       {\fshift $y^x$ }
+\def \PAUSEtfc     {\fshift PAUSE}
+
+\def \toPtfc       {\gshift $\rightarrow P$ }
+\def \ARCTANtfc    {\gshift TAN$^{-1}$}
+\def \ABStfc       {\gshift ABS }
+\def \NOPtfc       {\gshift NOP }
+
+% Basic functions including layout codes and the tabular versions (starting with 't')
+
+% line 1 
+\def \tSSTtf       #1{\cpp \indent \SSTtfc      & \lnbr{linenumber} & 11         & \rem {#1} \\}
+\def \tBSTtf       #1{\cpp \indent \BSTtfc      & \lnbr{linenumber} & 12         & \rem {#1} \\}
+\def \tGTOtf    #1 #2{\cpp \indent \GTOtfc {#1} & \lnbr{linenumber} & 13  #1     & \rem {#2} \\}
+
+
+\def \tFIXtf    #1 #2{\cpp \indent \FIXtfc {#1} & \lnbr{linenumber} & 14 11 #1  & \rem {#2} \\}
+\def \tSCItf    #1 #2{\cpp \indent \SCItfc {#1} & \lnbr{linenumber} & 14 12 #1  & \rem {#2} \\}
+\def \tENGtf    #1 #2{\cpp \indent \ENGtfc {#1} & \lnbr{linenumber} & 14 13 #1  & \rem {#2} \\}
+
+
+% line 2
+\def \tXswapYtf    #1{\cpp \indent \XswapYtfc    & \lnbr{linenumber} & 21         & \rem {#1} \\}
+\def \tRdowntf     #1{\cpp \indent \Rdowntfc     & \lnbr{linenumber} & 22         & \rem {#1} \\}
+\def \tSTOtf    #1 #2{\cpp \indent \STOtfc {#1}  & \lnbr{linenumber} & 23  #1     & \rem {#2} \\}
+\def \tRCLtf    #1 #2{\cpp \indent \RCLtfc {#1}  & \lnbr{linenumber} & 24  #1     & \rem {#2} \\}
+\def \tSigmaPlustf #1{\cpp \indent \SigmaPlustfc & \lnbr{linenumber} & 25         & \rem {#1} \\}
+
+\def \tSTOPLUStf     #1 #2{\cpp \indent \STOPLUStfc     {#1}  & \lnbr{linenumber} & 23 51 #1   & \rem {#2} \\}
+\def \tSTOMINUStf    #1 #2{\cpp \indent \STOMINUStfc    {#1}  & \lnbr{linenumber} & 23 41 #1   & \rem {#2} \\}
+\def \tSTOMULTIPLYtf #1 #2{\cpp \indent \STOMULTIPLYtfc {#1}  & \lnbr{linenumber} & 23 51 #1   & \rem {#2} \\}
+\def \tSTODIVIDEtf   #1 #2{\cpp \indent \STODIVIDEtfc   {#1}  & \lnbr{linenumber} & 23 41 #1   & \rem {#2} \\}
+
+\def \tXOvertf       #1{\cpp \indent \XOvertfc       & \lnbr{linenumber}  & 14 21     & \rem {#1} \\}
+\def \tstf           #1{\cpp \indent \stfc           & \lnbr{linenumber}  & 14 22     & \rem {#1} \\}
+\def \tSigmaMinustf  #1{\cpp \indent \SigmaMinustfc  & \lnbr{linenumber}  & 14 25     & \rem {#1} \\}
+
+\def \tPERCENTtf   #1{\cpp \indent \PERCENTtfc   & \lnbr{linenumber} & 15 21      & \rem {#1} \\}
+\def \tOverXtf     #1{\cpp \indent \OverXtfc     & \lnbr{linenumber} & 15 22      & \rem {#1} \\}
+
+
+% line 3
+\def \tENTERtf     #1{\cpp \indent \ENTERtfc     & \lnbr{linenumber} & 31         & \rem {#1} \\}
+\def \tCHStf       #1{\cpp \indent \CHStfc       & \lnbr{linenumber} & 32         & \rem {#1} \\}
+\def \tEEXtf       #1{\cpp \indent \EEXtfc       & \lnbr{linenumber} & 33         & \rem {#1} \\}
+\def \tCLXtf       #1{\cpp \indent \CLXtfc       & \lnbr{linenumber} & 34         & \rem {#1} \\}
+
+\def \tCLRPREFIXtf #1{\cpp \indent \CLRPREFIXtfc & \lnbr{linenumber} & 14 31      & \rem {#1} \\}
+\def \tCLRPRGMtf   #1{             \CLRPRGMtfc   & {}                & {}         & \rem {#1} \\}
+\def \tCLRREGtf    #1{\cpp \indent \CLRREGtfc    & \lnbr{linenumber} & 14 33      & \rem {#1} \\}
+\def \tCLRSTKtf    #1{\cpp \indent \CLRSTKtfc    & \lnbr{linenumber} & 14 34      & \rem {#1} \\}
+
+\def \tDEGtf   #1{\cpp \indent \DEGtfc    & \lnbr{linenumber} & 15 32      & \rem {#1} \\}
+\def \tRADtf   #1{\cpp \indent \RADtfc    & \lnbr{linenumber} & 15 33      & \rem {#1} \\}
+\def \tGRDtf   #1{\cpp \indent \GRDtfc    & \lnbr{linenumber} & 15 34      & \rem {#1} \\}
+
+
+% numbers e.d.
+\def \tNBRtf #1 #2{\cpp \indent \NBRtfc {#1}  & \lnbr{linenumber} & #1        & \rem {#2} \\}
+\def \tPointtf  #1{\indent \Pointtfc          & {}                & {}        & \rem {#1} \\}
+\def \tRStf     #1{\cpp \indent \RStfc        & \lnbr{linenumber} & 74        & \rem {#1} \\}
+
+
+% Operators - + X /
+\def \tOPminustf      #1{\cpp \indent \OPminustfc     & \lnbr{linenumber} & 41     & \rem {#1} \\}
+\def \tOPplustf       #1{\cpp \indent \OPplustfc      & \lnbr{linenumber} & 51     & \rem {#1} \\}
+\def \tOPmultiplytf   #1{\cpp \indent \OPmultiplytfc  & \lnbr{linenumber} & 61     & \rem {#1} \\}
+\def \tOPdividetf     #1{\cpp \indent \OPdividetfc    & \lnbr{linenumber} & 71     & \rem {#1} \\}
+
+
+% Conditional statements
+\def \tXsmlrYtf       #1{\cpp \indent \XsmlrYtfc      & \lnbr{linenumber} & 14 41     & \rem {#1} \\}
+\def \tXbigreqYtf     #1{\cpp \indent \XbigreqYtfc    & \lnbr{linenumber} & 14 51     & \rem {#1} \\}
+\def \tXnoteqYtf      #1{\cpp \indent \XnoteqYtfc     & \lnbr{linenumber} & 14 61     & \rem {#1} \\}
+\def \tXeqYtf         #1{\cpp \indent \XeqYtfc        & \lnbr{linenumber} & 14 71     & \rem {#1} \\}
+
+\def \tXsmlrZEROtf    #1{\cpp \indent \XsmlrZEROtfc   & \lnbr{linenumber} & 15 41     & \rem {#1} \\}
+\def \tXbigreqZEROtf  #1{\cpp \indent \XbigreqZEROtfc & \lnbr{linenumber} & 15 51     & \rem {#1} \\}
+\def \tXnoteqZEROtf   #1{\cpp \indent \XnoteqZEROtfc  & \lnbr{linenumber} & 15 61     & \rem {#1} \\}
+\def \tXeqZEROtf      #1{\cpp \indent \XeqZEROtfc     & \lnbr{linenumber} & 15 71     & \rem {#1} \\}
+
+
+% rest...
+
+\def \tLNtf        #1{\cpp \indent \LNtfc        & \lnbr{linenumber} & 14 07     & \rem {#1} \\}
+\def \tLOGtf       #1{\cpp \indent \LOGtfc       & \lnbr{linenumber} & 14 08     & \rem {#1} \\}
+\def \ttoRtf       #1{\cpp \indent \toRtfc       & \lnbr{linenumber} & 14 09     & \rem {#1} \\}
+
+\def \tExpXtf      #1{\cpp \indent \ExpXtfc      & \lnbr{linenumber} & 15 07     & \rem {#1} \\}
+\def \tTENpXtf     #1{\cpp \indent \TENpXtfc     & \lnbr{linenumber} & 15 08     & \rem {#1} \\}
+\def \ttoPtf       #1{\cpp \indent \toPtfc       & \lnbr{linenumber} & 15 09     & \rem {#1} \\}
+
+
+\def \tSINtf      #1{\cpp \indent \SINtfc      & \lnbr{linenumber} & 14 04      & \rem {#1} \\}
+\def \tCOStf      #1{\cpp \indent \COStfc      & \lnbr{linenumber} & 14 05      & \rem {#1} \\}
+\def \tTANtf      #1{\cpp \indent \TANtfc      & \lnbr{linenumber} & 14 06      & \rem {#1} \\}
+
+\def \tARCSINtf  #1{\cpp \indent \ARCSINtfc    & \lnbr{linenumber} & 15 04      & \rem {#1} \\}
+\def \tARCCOStf  #1{\cpp \indent \ARCCOStfc    & \lnbr{linenumber} & 15 05      & \rem {#1} \\}
+\def \tARCTANtf  #1{\cpp \indent \ARCTANtfc    & \lnbr{linenumber} & 15 06      & \rem {#1} \\}
+
+
+\def \tINTtf     #1{\cpp \indent \INTtfc       & \lnbr{linenumber} & 14 01      & \rem {#1} \\}
+\def \tSqrtXtf   #1{\cpp \indent \SqrtXtfc     & \lnbr{linenumber} & 14 02      & \rem {#1} \\}
+\def \tYpXtf     #1{\cpp \indent \YpXtfc       & \lnbr{linenumber} & 14 03      & \rem {#1} \\}
+
+\def \tFRACtf    #1{\cpp \indent \FRACtfc      & \lnbr{linenumber} & 15 01      & \rem {#1} \\}
+\def \tSqrXtf    #1{\cpp \indent \SqrXtfc      & \lnbr{linenumber} & 15 02      & \rem {#1} \\}
+\def \tABStf     #1{\cpp \indent \ABStfc       & \lnbr{linenumber} & 15 03      & \rem {#1} \\}
+
+\def \ttoHMStf   #1{\cpp \indent \toHMStfc     & \lnbr{linenumber} & 14 00      & \rem {#1} \\}
+\def \tLASTXtf   #1{\cpp \indent \LASTXtfc     & \lnbr{linenumber} & 14 73      & \rem {#1} \\}
+\def \tPAUSEtf   #1{\cpp \indent \PAUSEtfc     & \lnbr{linenumber} & 14 74      & \rem {#1} \\}
+
+\def \ttoHtf     #1{\cpp \indent \toHtfc       & \lnbr{linenumber} & 15 00      & \rem {#1} \\}
+\def \tPItf      #1{\cpp \indent \PItfc        & \lnbr{linenumber} & 15 73      & \rem {#1} \\}
+\def \tNOPtf     #1{\cpp \indent \NOPtfc       & \lnbr{linenumber} & 15 74      & \rem {#1} \\}
+
+% End of HP-25 model definitions

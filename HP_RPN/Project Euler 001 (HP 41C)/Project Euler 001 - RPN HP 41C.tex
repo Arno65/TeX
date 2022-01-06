@@ -1,0 +1,168 @@
+% ************************************************
+% Project Euler - Problem 1
+% in RPN code for HP 41C family
+%
+% (cl) 2022 by Arno Jacobs
+%
+%
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{Project Euler - Problem 1 - RPN code for the HP-41C family}
+
+\begin{document}
+\maketitle
+
+\rm
+\section{Multiples of 3 or 5}
+
+\bigskip
+\noindent
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. 
+
+\noindent
+The sum of these multiples is 23.
+
+
+\bigskip
+\noindent
+\textbf{Find the sum of all the multiples of 3 or 5 below 1000.}
+
+
+\bigskip
+\bigskip
+\noindent
+The web page for this problem is: 
+\textit{https://projecteuler.net/problem=1}
+
+
+\clearpage
+\section{Project Euler - Problem 1 - HP-41C code}
+
+\tStarttabular
+\tONfo           {Put the calculator [ON]}
+\tPRGMfo         {Enter program mode}
+\tGTOendfo       {Set program counter @ end of code} 
+\\
+\tLBLafo {EPA}		{Start position for problem 1}  
+\tENTERfo			{Get range}
+\tNBRfo {1}         {Decrease the range with 1}
+\tOPminusfo			{}
+\tSTOfo {00}        {Save the decreased range}
+\tNBRfo {3}         {Get the multiples of 3}
+\tOPdividefo 		{}
+\tXEQfnfo {INT}     {Only work with the integer part}
+\tENTERfo			{}
+\tENTERfo			{}
+\tNBRfo {1}         {Sum series: $n*(n+1) \over 2$}
+\tOPplusfo			{}
+\tOPmultiplyfo		{}
+\tNBRfo {1.5}       {}
+\tOPmultiplyfo		{}
+\tSTOfo {01}        {Save sum - multiples of 3}
+
+\tNewPage
+
+\tRCLfo {00} 		{}
+\tNBRfo {5}			{Get the multiples of 5}
+\tOPdividefo 		{}
+\tXEQfnfo {INT}     {Only work with the integer part}
+\tENTERfo			{}
+\tENTERfo			{}
+\tNBRfo {1}         {Sum series: $n*(n+1) \over 2$}
+\tOPplusfo			{}
+\tOPmultiplyfo		{}
+\tNBRfo {2.5}       {}
+\tOPmultiplyfo		{}
+\tRCLfo {01} 		{Add sum - multiples of 5}
+\tOPplusfo			{}
+\tSTOfo {01}        {Save new sum}
+
+\tRCLfo {00} 		{}
+\tNBRfo {15}		{Get the multiples of 15}
+\tOPdividefo 		{}
+\tXEQfnfo {INT}     {Only work with the integer part}
+\tXeqZEROfo			{Skip rest if there are no multiples}
+\tGTOafo {EPQ}		{}
+\tENTERfo			{}
+\tENTERfo			{}
+
+\tNewPage 
+
+\tNBRfo {1}         {Sum series: $n*(n+1) \over 2$}
+\tOPplusfo			{}
+\tOPmultiplyfo		{}
+\tNBRfo {7.5}       {}
+\tOPmultiplyfo		{}
+\tRCLfo {01} 		{Subtrack sum - multiples of $3 \times 5$ }
+\tXswapYfo 			{}
+\tOPminusfo			{}
+\tSTOfo {01}        {Save new sum}
+
+\tLBLafo {EPQ}      {End part of program for problem 1}  
+\tRCLfo {01} 		{Get the end sum}
+\tRTNfo				{Return}
+
+\\
+\tGTOendfo            	{End RPN coding} 
+\tPRGMfo              	{Leave program mode}
+\tASNfo {EPA} { LN }	{Assign "EPA" to LN } 
+\tUSERfo              	{Set USER mode} 
+
+\end{tabular}
+
+
+\clearpage
+\rm
+\section{How to use the program}
+
+\bigskip
+\noindent
+The program wil solve Euler Project problem 1 for a given range.
+
+\bigskip \noindent
+The HP-41C calculator has been set in USER-mode. \\
+Enter the range value and run the program by LN (in user-mode) or direct by:
+
+\tt
+\XEQfafo {EPA} \\
+
+
+\bigskip
+\noindent
+Example input:\\
+\tt
+\NBRfo{ 10} \\
+\LNfo \\ \\
+\rm
+Output: \NBRfo{23.00000000} \\
+
+or:
+
+\bigskip
+\noindent
+Example input:\\
+\tt
+\NBRfo{ 1000} \\
+\XEQfafo {EPA} \\ \\
+\rm
+Output: \NBRfo{233,168.0000} \\
+
+\bigskip
+\bigskip
+\noindent
+This code also worked correct a HP-11C by changing the label names and register numbers.
+
+\noindent
+For example; change label \textbf{EPA} to \textbf{E} and label  \textbf{EPQ} to \textbf{D}.
+
+\noindent
+Registers 00 and 01 on the HP-41C can be changed to registers 0 and 1.
+
+
+\end{document}

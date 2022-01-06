@@ -1,0 +1,170 @@
+% ************************************************
+% The Rabbit and Fox growth model
+% in RPN code for HP 41C series
+%
+% (cl) 2013 by Arno Jacobs
+%
+% An free adaptation of the HP-25 program
+%
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{The Rabbit and Fox model for the HP-41C family}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{The Rabbit and Fox model HP-41C code}
+
+\tStarttabular
+\tONfo           {Put the calculator [ON]}
+\tPRGMfo         {Enter program mode}
+\tGTOendfo       {Set program counter @ end of code} 
+\\
+\tLBLafo         {FR}      {Start position Rabbit and Fox model}  
+\tFIXfo          {5}       {Set the display format to 0.00000}  
+\tRCLfo          {02}      {Read amount of rabbits @ time is t}   
+\tENTERfo                  {} 
+\tENTERfo                  {} 
+\tRCLfo          {03}      {Read amount of foxes @ time is t}   
+\tRCLfo          {00}      {Encounter factor}   
+\tOPmultiplyfo             {}   
+\tOPmultiplyfo             {Number of meetings}   
+\tSTOfo          {04}      {Store}   
+\tXswapYfo                 {}   
+\tNBRfo          {2}       {}   
+\tOPmultiplyfo             {Calculate change rabbits} 
+\tOPminusfo                {} 
+\tRCLfo          {01}      {} 
+\tOPmultiplyfo             {}
+\tSTOPLUSfo      {02}      {Save new number of rabbits} 
+\tRCLfo          {04}      {} 
+\tRCLfo          {03}      {} 
+
+\tNewPage
+
+\tOPminusfo                {Calculate change foxes} 
+\tRCLfo          {01}      {} 
+\tOPmultiplyfo             {} 
+\tSTOPLUSfo      {03}      {Save new number of foxes} 
+\tRCLfo          {03}      {} 
+\tEEXfo          {5}       {} 
+\tOPdividefo               {Divide number of foxes by 100000} 
+\tRCLfo          {02}      {} 
+\tXEQfnfo        {INT}     {Add rounded number of rabbits}  
+\tOPplusfo                 {Form: rrr.00fff}  
+\tRTNfo                    {Return}  
+\\
+\tGTOendfo                 {END RPN coding} 
+\tPRGMfo                   {Leave program mode}
+\tASNfo   {FR} {\Rdownfoc} {Assign "FR" to \Rdownfoc } 
+\tUSERfo                   {Set USER mode} 
+\end{tabular}
+
+\clearpage
+\rm
+\section{How to use the Fox and Rabbit program}
+
+\bigskip
+\it
+This model is bases on a publication in a HP Journal (november 1975). It was an example for a HP-25 programmable calculator.
+\rm
+
+\bigskip
+\noindent
+In a fox and rabbit population model the growth functions can be described as a pair of nonlinear differential equations like:
+
+$$ {dR \over dt} = 2 R - \alpha R F $$
+
+$$ {dF \over dt} = -F + \alpha R F $$
+
+\bigskip
+\noindent
+Where R is the number of rabbits and F the number of foxes. 
+The $\alpha$ factor describes the effect of a rabbit meeting a fox.
+And t is for time.
+
+\bigskip
+With Euler: $ X_{n+1} = X_{n} + h F(X_{n}) $
+
+$$ { R_{n+1} } = { R_{n} + h (2 R_{n} - \alpha R_{n} F_{n}) } $$
+
+$$ { F_{n+1} } = { F_{n} + h ( - F_{n} - \alpha R_{n} F_{n}) } $$
+
+
+\bigskip
+\noindent
+The RPN coded Fox and Rabbit program with Label "FR" has been assigned to key 
+\Rdownfoc. 
+The HP-41C calculator has been set in USER-mode.
+\\
+Enter and store the initial values.
+
+\bigskip
+\bigskip
+\bigskip
+
+
+\noindent
+Example:\\
+\begin{tabular}{ l l }
+ $\alpha = 0.01 $   &  $h = 0.02 $ \\
+ $R_0 = 300 $       &  $F_0 = 150 $ \\
+\end{tabular} 
+
+\clearpage
+
+\bigskip
+\noindent
+Keystrokes:\\
+\tt
+\begin{tabular}{ l l }
+
+ .01 & \STOfo {00} \\
+ .02 & \STOfo {01} \\
+ 300 & \STOfo {02} \\
+ 150 & \STOfo {03} \\
+
+\end{tabular} 
+\rm
+
+\bigskip
+\bigskip
+
+\noindent
+The program will calculate step by step. Initial values are at time is 0. 
+The fist run will result in values at time is 1.
+
+\bigskip
+Now run, press key \Rdownfoc
+
+\bigskip
+Result:\\
+\tt \indent 303.00156 \\ \rm
+
+\noindent
+The number before the decimal point is the number of rabbits.
+The number after the decimal point is the number of foxes.\\
+So, at time is 1 the number of rabbits are 303 and foxes are 156.
+
+\bigskip
+Now run again (step 2), press key \Rdownfoc
+
+\bigskip
+Result:\\
+\tt \indent 305.00162 \\ \rm
+
+At time is 2 the number of rabbits are 305 and foxes are 162.\\
+\indent Etc. etc. etc.
+
+\bigskip
+
+\end{document}

@@ -1,0 +1,345 @@
+% ***************************************************
+% Master Mind program
+% in RPN code for HP-41C (CV/CX) family
+%
+% (cl) 2013 by Arno Jacobs
+%
+
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{Master Mind program for the HP-41C family}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{The Master Mind program HP-41C code}
+
+\tStarttabular
+\tONfo             {Put the calculator [ON]}
+\tSIZEfo {25}      {Set the minumum register size}
+\tPRGMfo           {Enter program mode}
+\tGTOendfo         {Set program counter @ end of code} 
+\\
+\tLBLafo {GMM}     {Start position code Generate Master Mind secret code}  
+\tRCLfo {19}       {Read random-seed value}  
+\tNBRfo {.1}       {}  
+\tOPplusfo         {Add .1 to the seed}   
+\tXEQfnfo {ABS}    {Make sure this value is positive}   
+\tSTOfo {19}       {Save a new random-seed value} 
+\tNBRfo {0}        {} 
+\tSTOfo {11}       {Reset the secret code} 
+\tSTOfo {12}       {} 
+\tSTOfo {13}       {} 
+\\
+\tLBLfo {01}       {Loop label generating code by code} 
+\tXEQfo {09}       {Call pseudo random function} 
+\tSTOfo {14}       {Store the (first) random code number} 
+\tRCLfo {11}       {Check if code is unique} 
+\tXeqYfo           {} 
+\tGTOfo {01}       {No? Generate a new code } 
+\tXnoteqZEROfo     {Is there all ready a code?} 
+
+\tNewPage
+
+\tGTOfo {02}       {No? Move on} 
+\tRCLfo {14}       {} 
+\tSTOfo {11}       {Store the secret code} 
+\tGTOfo {01}       {Loop for the second} 
+\\
+\tLBLfo {02}       {Next code} 
+\tRCLfo {14}       {} 
+\tRCLfo {12}       {} 
+\tXeqYfo           {Is the code unique?} 
+\tGTOfo {01}       {No? Generate a new code} 
+\tXnoteqZEROfo     {Is there all ready a code?} 
+\tGTOfo {03}       {No? Move on} 
+\tRCLfo {14}       {} 
+\tSTOfo {12}       {Store the secret code} 
+\tGTOfo {01}       {Loop for a new code} 
+\\
+\tLBLfo {03}       {}
+\tRCLfo {14}       {} 
+\tRCLfo {13}       {} 
+\tXeqYfo           {Is the code unique?} 
+\tGTOfo {01}       {No? Generate a new code} 
+\tXnoteqZEROfo     {Is there all ready a code?} 
+\tGTOfo {04}       {No? Move on} 
+\tRCLfo {14}       {} 
+\tSTOfo {13}       {Store the secret code} 
+
+\tNewPage
+
+\tGTOfo {01}       {Generate the last code} 
+\\
+\tLBLfo {04}       {} 
+\tNBRfo {0}        {Clear the display} 
+\tRTNfo            {Return} 
+\\
+\tLBLfo {09}       {The pseudo random number generator} 
+\tRCLfo {19}       {Read previous pseudo random number} 
+\tLNfo             {LN * 100} 
+\tEEXfo {2}        {} 
+\tOPmultiplyfo     {} 
+\tNBRfo {1}        {} 
+\tXEQfnfo {MOD}    {Modulo (1)  Number from 0 till 1} 
+\tSTOfo {19}       {Store the new pseudo random number} 
+\tNBRfo {6}        {Create a number from 1 till 6} 
+\tOPmultiplyfo     {} 
+\tNBRfo {1}        {} 
+\tOPplusfo         {} 
+\tXEQfnfo {INT}    {Integer 1..6} 
+\tRTNfo            {Return} 
+
+\tNewPage
+
+\\
+\tLBLafo {MM}      {Start position code memory test}  
+\tFIXfo {1}        {Set the display format to 0.0}  
+\tSTOfo {20}       {Store the users guess in register 20}  
+\tNBRfo {10}       {}
+\tOPmultiplyfo     {} 
+\tSTOfo {21}       {Store the users guess in register 21}   
+\tXEQfo {10}       {Get lowest digit} 
+\tSTOfo {24}       {Store the last number of the code in register 24}
+\tXEQfo {10}       {Get lowest digit} 
+\tSTOfo {23}       {Store the third number of the code in register 23}
+\tXEQfo {10}       {Get lowest digit} 
+\tSTOfo {22}       {Store the second number of the code in register 22} 
+\tXEQfo {10}       {Get last digit, saved in register 21} 
+\tNBRfo {0}        {} 
+\tSTOfo {00}       {Set the score to 0} 
+\tXEQfo {07}       {Call score count routine} 
+\tNBRfo {4}        {} 
+\tXeqYfo           {Is the score a 4.0?} 
+\tGTOfo {05}       {The user cracked the code} 
+\tRCLfo {00}       {Read the score, hits and near hits} 
+\tRTNfo            {Return} 
+
+\tNewPage
+
+\tLBLfo  {10}      {Help function, integer division and lowest digit}
+\tRCLfo {21}       {Read value} 
+\tNBRfo {10}       {} 
+\tOPdividefo       {Divide by 10} 
+\tXEQfnfo {INT}    {Round to integer} 
+\tSTOfo {21}       {Store value} 
+\tNBRfo {10}       {} 
+\tOPdividefo       {} 
+\tXEQfnfo {FRC}    {Calculate the lowest digit} 
+\tNBRfo {10}       {} 
+\tOPmultiplyfo     {} 
+\tRTNfo            {Return}
+\\
+\tLBLfo {05}       {The user cracked the code} 
+\tFIXfo {0}        {Set display format to 0.} 
+\tRCLfo {20}       {Read the secret code} 
+\tBEEPfo           {Give a beep} 
+\tRTNfo            {Return} 
+\\
+\tLBLfo {07}       {Routine to count the point} 
+\tRCLfo {21}       {First check right digit on wrong position} 
+\tRCLfo {12}       {Simple brute force} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {21}       {} 
+
+\tNewPage
+
+\tRCLfo {13}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {21}       {} 
+\tRCLfo {14}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {22}       {} 
+\tRCLfo {11}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {22}       {} 
+\tRCLfo {13}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {22}       {} 
+\tRCLfo {14}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {23}       {} 
+\tRCLfo {11}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {23}       {} 
+\tRCLfo {12}       {} 
+
+\tNewPage
+
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {23}       {} 
+\tRCLfo {14}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {24}       {} 
+\tRCLfo {11}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {24}       {} 
+\tRCLfo {12}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {24}       {} 
+\tRCLfo {13}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tNBRfo {10}       {} 
+\tSTODIVIDEfo {00} {Save score, number after decimal point} 
+\tRCLfo {11}       {Next check right digit on right position} 
+\tRCLfo {21}       {Simple brute force} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {12}       {} 
+
+\tNewPage
+
+\tRCLfo {22}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {13}       {} 
+\tRCLfo {23}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {14}       {} 
+\tRCLfo {24}       {} 
+\tXeqYfo           {Compare guess with secret code} 
+\tXEQfo {08}       {Add 1 to score} 
+\tRCLfo {00}       {Get the total score} 
+\tRTNfo            {Return} 
+\\
+\tLBLfo {08}       {Increment counter routine} 
+\tNBRfo {1}        {Go add 1} 
+\tSTOPLUSfo {00}   {Store in register 00} 
+\tRTNfo            {Return} 
+\\
+\tGTOendfo         {End RPN coding} 
+\tPRGMfo           {Leave program mode} 
+\tASNfo {GMM} {\SIGMAplusfoc}  {Assign "GMM" to \SIGMAplusfoc } 
+\tASNfo {MM}  {LN}             {Assign "MM" to LN } 
+\tUSERfo           {Set USER mode} 
+
+\end{tabular}
+
+\clearpage
+
+\rm
+\section{How to use the Master Mind program}
+
+\bigskip
+With routine "GMM" the calculator will generate a secret code in the form ABCD. 
+A, B, C and D are (pseudo) random numbers from one to six. 
+A, B, C and D are not equal to each other.
+
+\bigskip
+
+The RPN coded Master Mind program with the Labels "GMM" and "MM" have been assigned to keys 
+\SIGMAplusfoc and LN.
+The HP-41C calculator has been set in USER-mode.
+
+\bigskip
+Example game:
+
+\bigskip
+Keystrokes:
+\SIGMAplusfo
+\\
+\it { Running... (a secret code is created)}
+\rm
+
+\bigskip
+Enter your first guess:\\
+\tt
+\indent 1234 \\
+\LNfo
+\rm
+
+\bigskip
+Output: 
+\tt 2.1 \\
+\it
+Two numbers are correct and at the right place, 
+one number is correct but at the wrong place.
+\rm
+
+\bigskip
+Enter your second guess: \\
+\tt
+\indent 1253 \\
+\LNfo 
+\rm
+
+\bigskip
+Output: 
+\tt 1.3 \\
+\it
+One number is correct and at the right place, 
+three numbers are correct but at the wrong place.
+So the four numbers are all numbers in de code.
+\rm
+
+\clearpage
+
+\bigskip
+Enter your third guess: \\
+\tt
+\indent 5231 \\
+\LNfo
+\rm
+
+\bigskip
+Output: 
+\tt 1.3 \\
+\it
+One number is correct and at the right place, 
+three numbers are correct but at the wrong place.
+\rm
+
+\bigskip
+Enter your fourth guess: \\
+\tt
+\indent 3215  \\
+\LNfo
+\rm
+
+\bigskip
+Output: 
+\tt 0.4 \\
+\it
+All the numbers are correct but at the wrong place.
+\rm
+
+
+\bigskip
+Enter your fifth guess: \\
+\tt
+\indent 1532 \\
+\LNfo
+\rm
+
+\bigskip
+Output: (beep)
+\tt 1,532. \\
+\it
+You cracked the secret code.
+\rm
+\bigskip
+
+\end{document}
+
+% End of Master Mind document
+

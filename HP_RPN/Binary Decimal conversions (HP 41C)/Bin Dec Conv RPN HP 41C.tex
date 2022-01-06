@@ -1,0 +1,146 @@
+% ************************************************
+% Binary Decimal conversion code
+% in RPN code for HP 41C family
+%
+% (cl) 2013 by Arno Jacobs
+%
+%
+%
+
+\documentclass[a4paper, landscape]{article}
+\usepackage[landscape]{geometry}
+\input{../RPN_HP_Base_defs}
+
+% define the title
+\author{A.J.M. Jacobs}
+\title{Binary Decimal conversion code for the HP-41C family}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\clearpage
+\section{Binary to Decimal conversion HP-41C code (10 bit)}
+
+\tStarttabular
+\tONfo           {Put the calculator [ON]}
+\tPRGMfo         {Enter program mode}
+\tGTOendfo       {Set program counter @ end of code} 
+\\
+\tLBLafo {BTD}      {Start position Binary Decimal conversion}  
+\tSTOfo {02}        {Save the binary value}
+\tNBRfo {0}         {}
+\tSTOfo {00}        {Reset decimal value}
+\tSTOfo {01}        {Reset counter}
+\tLBLfo {01}        {Loop label}
+\tNBRfo {10}        {}
+\tSTODIVIDEfo {02}  {Divide binary value by 10}
+\tRCLfo {02}        {}
+\tXEQfnfo {FRC}     {Get fraction of the result}
+\tNBRfo {10}        {}
+\tOPmultiplyfo      {Multiply by 10}
+\tXEQfnfo {INT}     {Only work with the integer part}
+\tNBRfo {2}         {}
+\tRCLfo {01}        {}
+\tYpXfo             {$2^{counter}$}
+\tOPmultiplyfo      {If bit is $'1'$}
+\tSTOPLUSfo {00}    {Add to decimal result}
+
+\tNewPage
+
+\tNBRfo {1}         {}
+\tSTOPLUSfo {01}    {Increment counter}
+\tNBRfo {9}         {}
+\tRCLfo {01}        {}
+\tXsmlreqYfo        {}
+\tGTOfo {01}        {Count 10 bits}
+\tRCLfo {00}        {Read converted value}
+\tRTNfo             {Return}  
+\\
+\tGTOendfo            {End RPN coding} 
+\tPRGMfo              {Leave program mode}
+\tASNfo {BTD} { LOG } {Assign "BTD" to LOG } 
+\tUSERfo              {Set USER mode} 
+\end{tabular}
+
+
+\clearpage
+\section{Decimal to Binary conversion HP-41C code (10 bit)}
+
+\resetcounter
+
+\tStarttabular
+\tONfo           {Put the calculator [ON]}
+\tPRGMfo         {Enter program mode}
+\tGTOendfo       {Set program counter @ end of code} 
+\\
+\tLBLafo {DTB}      {Start position Decimal Binary conversion}  
+\tSTOfo {02}        {Save the decimal value}
+\tNBRfo {0}         {}
+\tSTOfo {00}        {Reset binary value}
+\tSTOfo {01}        {Reset counter}
+\tLBLfo {01}        {Loop label}
+\tNBRfo {2}         {}
+\tSTODIVIDEfo {02}  {Divide binary value by 10}
+\tRCLfo {02}        {}
+\tXEQfnfo {FRC}     {Get fraction of the result}
+\tNBRfo {2}         {}
+\tOPmultiplyfo      {Multiply by 2}
+\tXEQfnfo {INT}     {Only work with the integer part}
+\tRCLfo {01}        {}
+\tTENpXfo           {$10^{counter}$}
+\tOPmultiplyfo      {If bit is $'1'$}
+\tSTOPLUSfo {00}    {Add to binary result}
+
+\tNewPage
+
+\tNBRfo {1}         {}
+\tSTOPLUSfo {01}    {Increment counter}
+\tNBRfo {9}         {}
+\tRCLfo {01}        {}
+\tXsmlreqYfo        {}
+\tGTOfo {01}        {Count 10 bits}
+\tRCLfo {00}               {Read converted value}
+\tRTNfo                    {Return}  
+\\
+\tGTOendfo            {End RPN coding} 
+\tPRGMfo              {Leave program mode}
+\tASNfo {DTB} { COS } {Assign "DTB" to COS } 
+\tUSERfo              {Set USER mode} 
+\end{tabular}
+
+
+\clearpage
+\rm
+\section{How to use the conversion routines}
+
+\bigskip
+\noindent
+The routines are simple straight forward conversion routines. "BTD" does a binary to decimal conversion. "DTB" does the opposite. Both have a 10 bits resolution.
+
+\bigskip \noindent
+The HP-41C calculator has been set in USER-mode. \\
+Enter a binary value and XEQ "BTD" by LOG or enter a decimal value and XEQ "DTB" by COS.
+
+\bigskip
+\noindent
+Example:\\
+\tt
+\NBRfo{ 11110000} \\
+\LOGfo \\ \\
+\rm
+Output: \NBRfo{240} \\
+
+or:
+
+\bigskip
+\noindent
+Example:\\
+\tt
+\NBRfo{ 253} \\
+\COSfo \\ \\
+\rm
+Output: \NBRfo{11111101} \\
+
+
+\end{document}
